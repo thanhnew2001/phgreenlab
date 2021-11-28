@@ -12,25 +12,19 @@ export default function Labs() {
     const [serialNumber, setSerialNumber] = useState('')
     const [type, setType] = useState('')
     const [isActive, setIsActive] = useState('')
-    const endPoint = "http://127.0.0.1:4000/Labs"
+
+    //const endPoint = "http://127.0.0.1:4000/Labs"
+    //const endPoint = "https://thegreenlab.xyz/Labs"
+    const endPoint = "http://thegreenlab.xyz:3000/Labs"
     const [loading, setLoading] = useState(true)
    
     
-
-    let base64 = require('base-64');
-   let email ='email'
-    // let username = 'user';
-    let password = 'passwd';
-    let headers = new Headers()
    
     useEffect( async() => {
-        console.log('jjjj')
         const response = await fetch(endPoint,{
             method: 'GET',
-            headers: headers.set('Authorization', 'Basic ' + base64.encode(email + ":" + password)),
-            mode: 'cors'}
-        
-      )
+            headers:{'Authorization':'Basic aGllbkBnbWFpbC5jb206MTIz'}
+        })
         const data = await response.json()
         setData(data)
       setLoading(false)
