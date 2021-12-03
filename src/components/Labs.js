@@ -14,8 +14,8 @@ export default function Labs() {
     const [isActive, setIsActive] = useState('')
 
     //const endPoint = "http://127.0.0.1:4000/Labs"
-    //const endPoint = "https://thegreenlab.xyz/Labs"
-    const endPoint = "http://thegreenlab.xyz:3000/Labs"
+    const endPoint = "   http://thegreenlab.xyz:3000/Datums/LastestDataByDevice?DeviceSerialNumber=FH21101006"
+    // const endPoint = "http://thegreenlab.xyz:3000/Labs"
     const [loading, setLoading] = useState(true)
    
     
