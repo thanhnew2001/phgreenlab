@@ -38,6 +38,9 @@ function App() {
              <Routes>
              <Route path="/sensors" caseSensitive={false} element={ <Sensor />} />
              </Routes>
+             <Routes>
+             <Route path="/signup" caseSensitive={false}  />
+             </Routes>
 
           </div>
           </Router>

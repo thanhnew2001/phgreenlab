@@ -1,9 +1,9 @@
 
 
 import React from "react";
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" />;
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>;
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>;
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet"/>;
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
 
 export default function Home() {
     return (
@@ -19,16 +19,17 @@ export default function Home() {
                     <li> <a class="nav-link active" href="/devices">OMS</a></li>
                     <li> <a class="nav-link active" href="/rules">Rule</a></li>
                 </ul>
-                <ul>
-                    <span class="nav-item active dropdown ">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" style={{ color: 'ActiveBorder' }} >smartpH</a>
+
+                    <span class="navbar-nav dropdown ">
+                       <li> <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" style={{ color: 'ActiveBorder' }} >smartpH</a>
+                       </li>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="/signup">Sign up</a></li>
                             <li><a class="dropdown-item" href="/signin">Sign in</a></li>
                             <li><a class="dropdown-item" href="/logout">Log out</a></li>
                         </ul>
                     </span>
-                </ul>
+                
 
             </div>
 

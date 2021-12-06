@@ -60,12 +60,14 @@ export default function Devicedb() {
                     <tr>
 
                         <td>Description</td>
+                        <td> Status</td>
                         <td> DateSync</td>
-                        <td> Friendly Name</td>
+                        
+                        {/* <td> Friendly Name</td>
                         <td>Model</td>
                         <td>SerialNumber</td>
                         <td>Type</td>
-                        <td>Lab Serial Number</td>
+                        <td>Lab Serial Number</td> */}
                         <td>Parameters</td>
                     </tr>
                 </thead>
@@ -75,18 +77,27 @@ export default function Devicedb() {
                         return (
                             <tr >
 
-                                <td>{b.device.Description}</td>
+                                <td>{b.device.Description} <br/>
+                                FriendlyName: {b.device.FriendlyName} <br/>
+                                Model: {b.device.Model} <br/>
+                                SerialNumber: {b.device.SerialNumber} <br/>
+                                Type: {b.device.Type} <br/>
+                                DeviceSerialNumber: {b.device.LabSerialNumber}
+                                </td>
+                                <td > 
+                                    <a href="/viewchart">  view chart</a>
+                                   </td>
                                 <td type="datetime">{moment(b.device.DateSync).format("DD/MM/YYYY, HH:mm")}</td>
-                                <td>{b.device.FriendlyName}</td>
+                                {/* <td>{b.device.FriendlyName}</td>
                                 <td>{b.device.Model}</td>
                                 <td >{b.device.SerialNumber}</td>
                                 <td>{b.device.Type}</td>
-                                <td>{b.device.LabSerialNumber}</td>
+                                <td>{b.device.LabSerialNumber}</td> */}
                                 <td>
                                     {b.deviceData.map(a => {
                                         return (
                                             <>
-                                                <span className="dot">{a.SensorType} <br/> {a.Value}</span>
+                                                <span className="dot">{(a.SensorType).slice(0,4)} <br/> {a.Value}</span>
                                                 
                                             </>
                                         )
