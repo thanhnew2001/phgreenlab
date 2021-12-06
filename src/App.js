@@ -13,37 +13,48 @@ import Labs from "./components/Labs";
 import Home from "./components/Home"
 import DeviceDashBoard from './components/DeviceDashBoard';
 import Sensor from './components/Sensor';
+import Devicedb from './components/Devicedb';
+import StatisticData from './components/StatisticData';
 
 function App() {
  return (
-        <Router >
-          <Home />
-          <div>
-          <Routes>
+        // <Router >
+        //   <Home />
+        //   <div>
+        //   <Routes>
              
-             <Route path="/"  />
-             </Routes>
+        //      <Route path="/"  />
+        //      </Routes>
        
            
-           <Routes>
+        //    <Routes>
              
-              <Route path="/labs" caseSensitive={false} element={ <Labs />} />
-              </Routes>
-              <Routes>
+        //       <Route path="/labs" caseSensitive={false} element={ <Labs />} />
+        //       </Routes>
+        //       <Routes>
              
-             <Route path="/devices" caseSensitive={false} element={ <DeviceDashBoard />} />
-             </Routes>
+        //      <Route path="/devices" caseSensitive={false} element={ <DeviceDashBoard />} />
+        //      </Routes>
             
 
-             <Routes>
-             <Route path="/sensors" caseSensitive={false} element={ <Sensor />} />
-             </Routes>
-             <Routes>
-             <Route path="/signup" caseSensitive={false}  />
-             </Routes>
+        //      <Routes>
+        //      <Route path="/sensors" caseSensitive={false} element={ <Sensor />} />
+        //      </Routes>
+        //      <Routes>
+        //      <Route path="/devicedb" caseSensitive={false} element={ <Devicedb />}  />
+        //      </Routes>
 
-          </div>
-          </Router>
+        //      <Routes>
+        //      <Route path="/statistic" caseSensitive={false} element={ <StatisticData />}  />
+        //      </Routes>
+
+        //   </div>
+        //   </Router>
+        <div>
+          <StatisticData/>
+          {/* <Devicedb /> */}
+
+        </div>
    
 )
 }
