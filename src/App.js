@@ -13,35 +13,38 @@ import Labs from "./components/Labs";
 import Home from "./components/Home"
 import DeviceDashBoard from './components/DeviceDashBoard';
 import Sensor from './components/Sensor';
+import Devicedb from './components/Devicedb';
+import StatisticData from './components/StatisticData';
+import Chart from './components/Chart'
 
 function App() {
  return (
         <Router >
           <Home />
           <div>
-          <Routes>
-             
-             <Route path="/"  />
-             </Routes>
-       
-           
-           <Routes>
-             
+         
+             {/* <Routes>
               <Route path="/labs" caseSensitive={false} element={ <Labs />} />
-              </Routes>
+              </Routes> */}
+
               <Routes>
-             
              <Route path="/devices" caseSensitive={false} element={ <DeviceDashBoard />} />
              </Routes>
             
 
              <Routes>
-             <Route path="/sensors" caseSensitive={false} element={ <Sensor />} />
+             <Route path="/viewchart" caseSensitive={false} element={ <Chart />} />
              </Routes>
 
-          </div>
-          </Router>
-   
+             {/* <Routes>
+             <Route path="/devicedb" caseSensitive={false} element={ <Devicedb />}  />
+             </Routes> */}
+
+             <Routes>
+             <Route path="/statistic" caseSensitive={false} element={ <StatisticData />}  />
+             </Routes>
+</div>
+   </Router>
 )
 }
 
