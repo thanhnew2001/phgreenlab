@@ -17,9 +17,9 @@ export default function Home() {
                     </span>
                     <li> <a class="nav-link active" href="#">Home</a></li>
                     <li> <a class="nav-link active" href="/devices">OMS</a></li>
-                    <li> <a class="nav-link active" href="/rules">Rule</a></li>
+                    <li> <a class="nav-link active" href="/statistic">StatisticData</a></li>
                 </ul>
-
+<ul>
                     <span class="navbar-nav dropdown ">
                        <li> <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" style={{ color: 'ActiveBorder' }} >smartpH</a>
                        </li>
@@ -29,7 +29,7 @@ export default function Home() {
                             <li><a class="dropdown-item" href="/logout">Log out</a></li>
                         </ul>
                     </span>
-                
+                    </ul>
 
             </div>
 
