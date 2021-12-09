@@ -11,13 +11,15 @@ export default function StatisticData() {
 
   const datetime = moment()
 
-  const endPoint = `https://thegreenlab.xyz/Datums/StatisticData?StartDate=2021-12-01&EndDate=2021-12-31`
+  const endPoint = `https://thegreenlab.xyz/Datums/StatisticData?StartDate=2021-11-01&EndDate=2021-12-31`
 
   const [device, setDevice] = useState('')
   const [json, setJson] = useState(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(async () => {
+
+    console.log('useeffect')
     const response = await fetch(endPoint, {
       method: 'GET',
       headers: { 'Authorization': 'Basic aGllbkBnbWFpbC5jb206MTIz' }
@@ -60,7 +62,6 @@ export default function StatisticData() {
       ds[i].style.display = 'none';
     }
     
-    console.log()
     document.querySelector('#'+v).style.display = 'block';
   }
 
@@ -68,18 +69,24 @@ export default function StatisticData() {
   return (
     <div className="container mt-2">
 
-      <h1>Statistic Data</h1>
-      <select onChange={()=>doSelect()} id="selDevice">
-      <option>-- </option>
-        {json.children.map(s=> (<option>{s.name} </option>))}
-       
+      <h2>Statistic Data</h2>
+      {json!==null? 
+
+      <div>
+      <span>Select a device</span>
+      <select className="form-select" onChange={()=>doSelect()} id="selDevice">
+      <option> -- </option>
+        {json.children.map(s=> (<option>{s.name} </option>))}    
       </select>
+      <br/>
 
       {json.children.map(e => {
 
         return (
           <div style={{display:'none'}} id={e.name} className="divDevice">
-            <h2>{e.name}</h2>
+  
+            <h3 className="mb-3">{e.name}</h3>
+           
             {e.children.map(s => {
               return (
                 <>
@@ -88,7 +95,7 @@ export default function StatisticData() {
                   <table className="table mt3">
                     <tr class="table-info">
                       <td rowSpan="1">Date</td>
-                      <td style={{ textAlign: 'right' }}>Value:</td>
+        
                       <td style={{ textAlign: 'left' }}>Avg</td>
                       <td style={{ textAlign: 'left' }}>Min</td>
                       <td style={{ textAlign: 'left' }}>Max</td>
@@ -100,7 +107,7 @@ export default function StatisticData() {
                         <tr>
 
                           <td>{d.name}</td>
-                          <td></td>
+ 
                           <td style={{ textAlign: 'left' }}>{Math.round(d.children[0].AVG)}</td>
                           <td style={{ textAlign: 'left' }}>{Math.floor(d.children[0].MIN)}</td>
                           <td style={{ textAlign: 'left' }}>{Math.floor(d.children[0].MAX)}</td>
@@ -116,6 +123,9 @@ export default function StatisticData() {
           </div>
         )
       })}
+
+      </div>
+      : "Loading"}
     </div>
 
   )
