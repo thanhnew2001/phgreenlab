@@ -12,14 +12,14 @@ export default function Devicedb() {
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(true)
     const [bigdata, setBigdata] = useState([])
-    const endPoint = "http://thegreenlab.xyz:3000/Devices"
+    const endPoint = "http://thegreenlab.xyz/Devices"
 
 
 
     useEffect(async () => {
         const response = await fetch(endPoint, {
             method: 'GET',
-            headers: { 'Authorization': 'Basic aGllbkBnbWFpbC5jb206MTIz' }
+            headers: { 'Authorization': 'Basic dnZAZ21haWwuY29tOjEyMzQ1Ng==' }
         })
         const data = await response.json()
 
@@ -30,7 +30,7 @@ export default function Devicedb() {
 
             const deviceresponse = await fetch(`https://thegreenlab.xyz/Datums/LastestDataByDevice?DeviceSerialNumber=${serialNumber}`, {
                 method: 'GET',
-                headers: { 'Authorization': 'Basic aGllbkBnbWFpbC5jb206MTIz' }
+                headers: { 'Authorization': 'Basic dnZAZ21haWwuY29tOjEyMzQ1Ng==' }
 
             })
 
