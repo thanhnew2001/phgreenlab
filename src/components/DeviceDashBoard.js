@@ -12,7 +12,7 @@ export default function Devicedb() {
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(true)
     const [bigdata, setBigdata] = useState([])
-    const endPoint = "http://thegreenlab.xyz:3000/Devices"
+    const endPoint = "http://127.0.0.1:3000/Devices"
 
 
 
@@ -28,7 +28,7 @@ export default function Devicedb() {
             let d = data[i]
             let serialNumber = d.SerialNumber
 
-            const deviceresponse = await fetch(`https://thegreenlab.xyz/Datums/LastestDataByDevice?DeviceSerialNumber=${serialNumber}`, {
+            const deviceresponse = await fetch(`http://127.0.0.1:3000/Datums/LastestDataByDevice?DeviceSerialNumber=${serialNumber}`, {
                 method: 'GET',
                 headers: { 'Authorization': 'Basic aGllbkBnbWFpbC5jb206MTIz' }
 
@@ -60,20 +60,22 @@ export default function Devicedb() {
                     <tr>
 
                         <td>Description</td>
-                        <td> Status</td>
+                       
                         <td> DateSync</td>
-                        
+                        <td>SerialNumber</td>
                         {/* <td> Friendly Name</td>
                         <td>Model</td>
-                        <td>SerialNumber</td>
+                     
                         <td>Type</td>
                         <td>Lab Serial Number</td> */}
                         <td>Parameters</td>
+                        <td> Status</td>
                     </tr>
                 </thead>
                 <tbody>
 
                     {bigdata.map(b => {
+                        let url=`/details?DeviceSerialNumber=${b.device.SerialNumber}`
                         return (
                             <tr >
 
@@ -84,10 +86,11 @@ export default function Devicedb() {
                                 Type: {b.device.Type} <br/>
                                 DeviceSerialNumber: {b.device.LabSerialNumber}
                                 </td>
-                                <td > 
-                                    <a href="/viewchart">  view chart</a>
-                                   </td>
+                               
                                 <td type="datetime">{moment(b.device.DateSync).format("DD/MM/YYYY, HH:mm")}</td>
+                                <td >
+                                <a href={url}> {b.device.SerialNumber} </a>
+                                </td>
                                 {/* <td>{b.device.FriendlyName}</td>
                                 <td>{b.device.Model}</td>
                                 <td >{b.device.SerialNumber}</td>
@@ -104,6 +107,9 @@ export default function Devicedb() {
                                     }
                                     )}
                                 </td>
+                                <td > 
+                                    <a href="MyChart.html">  view chart</a>
+                                   </td>
                             </tr>
 
                         )
