@@ -12,7 +12,8 @@ export default function Details() {
     const [enDate, setEnDate]=useState('')
   
 
-    
+    const [sensorData, setSensorData] = useState([])
+    const [chartOptions, setChartOptions] = useState([])
 
     useEffect(async () => {
         // show()
@@ -48,35 +49,46 @@ export default function Details() {
             headers: { 'Authorization': 'Basic aGllbkBnbWFpbC5jb206MTIz' }
         })
         const response = await data.json()
-         console.log(response)
+        // console.log(response)
         setResponse(response)
 
         for (var i=0; i<response.length; i++){
             //di qua tung sensor
             let sensor = response[i]
-            for (var i = 0; i < sensor.length; i++) { 
 
+            let temp = []
+            for (var j = 0; j < sensor.data.length; j++) { 
                
+                temp.push( sensor.data[j].AVG)
             }
-     
-        }
 
+            let sData = sensorData
+            sData.push(temp)
+            setSensorData(sData)
+
+
+            let sOptions = chartOptions
+            sOptions.push({
+                chart: {
+                  type: 'spline'
+                },
+                title: {
+                //   text: `${sensorType}`
+                text: sensor.sensorType
+                },
+                series: [
+                  {
+                 data: temp
+               }
+                ]
+              })
+              setChartOptions(sOptions)   
+        }
     }
 
-    const options = {
-        chart: {
-          type: 'spline'
-        },
-        title: {
-        //   text: `${sensorType}`
-        text:'temp'
-        },
-        series: [
-          {
-         data: []
-       }
-        ]
-      };
+    console.log(chartOptions)
+
+   
     
     return (
         <div>
@@ -86,7 +98,7 @@ export default function Details() {
             <label>To date:</label>
             <input type="date" value={enDate} onChange={(e)=>setEnDate(e.target.value)}/>
             <button onClick={()=>show2()}>Show</button>
-            {response.map(a=>{
+            {response.map((a, index)=>{
                 return(
                 <>
                 <p>{a.sensorType}</p>
@@ -115,13 +127,20 @@ export default function Details() {
                        
                     </tbody>
                 </table>
+                <HighchartsReact highcharts={Highcharts} options={chartOptions[index]} />
                 </>
                 )
             })}
-             <HighchartsReact highcharts={Highcharts} options={options} />
+
+            {/* {sensorData.map((sd, index) =>{
+                return (
+                    <HighchartsReact highcharts={Highcharts} options={chartOptions[index]} />
+                )
+            })} */}
+
+
+            
         </div>
         
     )
 }
-{/* <script src="http://code.highcharts.com/highcharts.js"></script>;
-<div id="container" style="min-width: 300px; height: 300px; margin: 1em"> hhhhhhh</div> */}

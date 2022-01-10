@@ -15,9 +15,9 @@ import DeviceDashBoard from './components/DeviceDashBoard';
 import Sensor from './components/Sensor';
 import Devicedb from './components/Devicedb';
 import StatisticData from './components/StatisticData';
-import Chart from './components/Chart';
+
 import Details from './components/Details';
-import MyChart from './components/Chart';
+
 
 function App() {
  return (
@@ -34,14 +34,11 @@ function App() {
              </Routes>
             
 
-             <Routes>
-             <Route path="/mychart" caseSensitive={false} element={ <MyChart />} />
-         
-             </Routes>
-             <Routes>
+            
+             {/* <Routes>
              <Route path="/chart" caseSensitive={false} element={ <Chart />} />
          
-             </Routes>
+             </Routes> */}
 
              <Routes>
              <Route path="/details" caseSensitive={false} element={ <Details />}  />

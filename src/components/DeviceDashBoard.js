@@ -108,7 +108,7 @@ export default function Devicedb() {
                                     )}
                                 </td>
                                 <td > 
-                                    <a href="/MyChart.html">  view chart</a>
+                                    <a href="#">  view chart</a>
                                    </td>
                             </tr>
 
