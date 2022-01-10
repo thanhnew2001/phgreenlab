@@ -10,8 +10,6 @@ export default function Details() {
     const [stDate, setStDate] = useState('')
     const [enDate, setEnDate] = useState('')
 
-
-    const [sensorData, setSensorData] = useState([])
     const [chartOptions, setChartOptions] = useState([])
 
     const basedURL = "https://thegreenlab.xyz"
@@ -44,7 +42,7 @@ export default function Details() {
     const show2 = async () => {
         let queryString = window.location.search
         let params = new URLSearchParams(queryString);
-        let serialNumber = params.get("DeviceSerialNumber"); // is the number 123
+        let serialNumber = params.get("DeviceSerialNumber"); 
 
         // const endPoint = 'http://127.0.0.1:3000/Datums/StatisticDataByDevice?DeviceSerialNumber=CA21101009-03&StartDate=2021-12-01&EndDate=2022-01-06'
         const endPoint = `${basedURL}/Datums/StatisticDataByDevice?DeviceSerialNumber=${serialNumber}&StartDate=${stDate}&EndDate=${enDate}`
@@ -53,25 +51,19 @@ export default function Details() {
             headers: { 'Authorization': 'Basic aGllbkBnbWFpbC5jb206MTIz' }
         })
         const response = await data.json()
-        // console.log(response)
         setResponse(response)
 
+        
+        let sOptions = []
         for (var i = 0; i < response.length; i++) {
             //di qua tung sensor
             let sensor = response[i]
-
             let temp = []
+           
             for (var j = 0; j < sensor.data.length; j++) {
 
                 temp.push(sensor.data[j].AVG)
             }
-
-            let sData = sensorData
-            sData.push(temp)
-            setSensorData(sData)
-
-
-            let sOptions = chartOptions
             sOptions.push({
                 chart: {
                     type: 'spline'
@@ -86,13 +78,12 @@ export default function Details() {
                     }
                 ]
             })
-            setChartOptions(sOptions)
+            
         }
+        setChartOptions(sOptions)
     }
 
     console.log(chartOptions)
-
-
 
     return (
         <div>
