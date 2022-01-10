@@ -84,20 +84,20 @@
               function (i) {
                 return (Math.round(i.AVG))
           })
-          const min = response.map(
-            function (index) {
-            return index.data;
-          })
-            const dmin = time[0].map(
-              function (i) {
-                return (Math.round(i.MIN))
-          })
+          // const min = response.map(
+          //   function (index) {
+          //   return index.data;
+          // })
+          //   const dmin = time[0].map(
+          //     function (i) {
+          //       return (Math.round(i.MIN))
+          // })
         console.log(dtime)
         console.log(davg)
-        console.log(dmin)
+        // console.log(dmin)
         myChart.config.data.labels = dtime;
-        myChart.config.data.datasets[0].series.data = davg;
-        myChart.config.data.datasets[0].series.data1 = dmin;
+        myChart.config.data.datasets[0].data = davg;
+        // myChart.config.data.datasets[0].series.data1 = dmin;
         myChart.update()
       })
     }
@@ -106,7 +106,7 @@
       labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
       datasets: [{
         label: 'Weekly Sales',
-        series:[{
+        // series:[{
         data: [18, 12, 6, 9, 12, 3, 9],
         backgroundColor: [
           'rgba(255, 26, 104, 0.2)',
@@ -127,31 +127,7 @@
           'rgba(0, 0, 0, 1)'
         ],
         borderWidth: 1
-      },
-    // {data1: [10, 2, 8, 9, 30, 3, 9],
-    //     backgroundColor: [
-    //       'rgba(200, 26, 104, 0.2)',
-    //       'rgba(50, 162, 235, 0.2)',
-    //       'rgba(200, 206, 86, 0.2)',
-    //       'rgba(70, 192, 192, 0.2)',
-    //       'rgba(153, 102, 255, 0.2)',
-    //       'rgba(255, 159, 64, 0.2)',
-    //       'rgba(0, 0, 0, 0.2)'
-    //     ],
-    //     borderColor: [
-    //       'rgba(255, 26, 104, 1)',
-    //       'rgba(54, 162, 235, 1)',
-    //       'rgba(255, 206, 86, 1)',
-    //       'rgba(75, 192, 192, 1)',
-    //       'rgba(153, 102, 255, 1)',
-    //       'rgba(255, 159, 64, 1)',
-    //       'rgba(0, 0, 0, 1)'
-    //     ],
-    //     borderWidth: 0.5
-    //   }
-    ]
-    }, 
-  ]
+      }]
     };
 
     // config 

@@ -38,6 +38,10 @@ function App() {
              <Route path="/mychart" caseSensitive={false} element={ <MyChart />} />
          
              </Routes>
+             <Routes>
+             <Route path="/chart" caseSensitive={false} element={ <Chart />} />
+         
+             </Routes>
 
              <Routes>
              <Route path="/details" caseSensitive={false} element={ <Details />}  />
