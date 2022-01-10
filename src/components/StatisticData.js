@@ -11,7 +11,7 @@ export default function StatisticData() {
 
   const datetime = moment()
 
-  const endPoint = `https://thegreenlab.xyz/Datums/StatisticData?StartDate=2021-11-01&EndDate=2021-12-31`
+  const endPoint = `http://127.0.0.1:3000/Datums/StatisticData?StartDate=2021-11-01&EndDate=2021-12-31`
 
   const [device, setDevice] = useState('')
   const [json, setJson] = useState(null)
