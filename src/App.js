@@ -9,11 +9,9 @@ import {
   Link
 } from "react-router-dom";
 
-import Labs from "./components/Labs";
 import Home from "./components/Home"
 import DeviceDashBoard from './components/DeviceDashBoard';
-import Sensor from './components/Sensor';
-import Devicedb from './components/Devicedb';
+
 import StatisticData from './components/StatisticData';
 
 import Details from './components/Details';

@@ -12,12 +12,12 @@ export default function Devicedb() {
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(true)
     const [bigdata, setBigdata] = useState([])
-    const endPoint = "http://127.0.0.1:3000/Devices"
+    const basedURL = "https://thegreenlab.xyz"
 
 
 
     useEffect(async () => {
-        const response = await fetch(endPoint, {
+        const response = await fetch(basedURL+"/Devices", {
             method: 'GET',
             headers: { 'Authorization': 'Basic aGllbkBnbWFpbC5jb206MTIz' }
         })
@@ -28,7 +28,7 @@ export default function Devicedb() {
             let d = data[i]
             let serialNumber = d.SerialNumber
 
-            const deviceresponse = await fetch(`http://127.0.0.1:3000/Datums/LastestDataByDevice?DeviceSerialNumber=${serialNumber}`, {
+            const deviceresponse = await fetch(`${basedURL}/Datums/LastestDataByDevice?DeviceSerialNumber=${serialNumber}`, {
                 method: 'GET',
                 headers: { 'Authorization': 'Basic aGllbkBnbWFpbC5jb206MTIz' }
 
