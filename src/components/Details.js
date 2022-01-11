@@ -14,8 +14,27 @@ export default function Details() {
 
     const basedURL = "https://thegreenlab.xyz"
 
+    function today() {
+        return new Date();
+    }
+    
+    function lastWeek() {
+        return new Date(today().getTime() - 30*24 * 60 * 60 * 1000);
+    }
+    
+    // Get formatted date YYYY-MM-DD
+    function getFormattedDate(date) {
+        return date.getFullYear()
+            + "-"
+            + ("0" + (date.getMonth() + 1)).slice(-2)
+            + "-"
+            + ("0" + date.getDate()).slice(-2);
+    }
+
 
     useEffect(async () => {
+        setStDate(getFormattedDate(lastWeek()))
+        setEnDate(getFormattedDate(today()))
         // show()
 
     }, []);
@@ -112,9 +131,9 @@ export default function Details() {
                                         <tr>
 
                                             <td>{moment(b.DateOnly).format("YYYY-MM-DD")}</td>
-                                            <td>{Math.round(b.AVG)}</td>
-                                            <td>{Math.round(b.MIN)}</td>
-                                            <td>{Math.round(b.MAX)}</td>
+                                            <td>{Math.round(100*b.AVG)/100}</td>
+                                            <td>{Math.round(100*b.MIN, 2)/100}</td>
+                                            <td>{Math.round(100*b.MAX, 2)/100}</td>
 
                                         </tr>
                                     )
