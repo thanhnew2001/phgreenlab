@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import moment from "moment";
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
+import '../App.css';
 export default function Details() {
     // const datetime = moment()
     const [data, setData] = useState([])
@@ -77,24 +78,31 @@ export default function Details() {
         for (var i = 0; i < response.length; i++) {
             //di qua tung sensor
             let sensor = response[i]
+            
             let temp = []
-           
             for (var j = 0; j < sensor.data.length; j++) {
-
                 temp.push(sensor.data[j].AVG)
+            }
+            let min = []
+            for (var j = 0; j < sensor.data.length; j++) {
+                min.push(sensor.data[j].MIN)   
+            }
+            let max = []
+            for (var j = 0; j < sensor.data.length; j++) {
+                max.push(sensor.data[j].MAX)   
             }
             sOptions.push({
                 chart: {
                     type: 'spline'
                 },
                 title: {
-                    //   text: `${sensorType}`
+
                     text: sensor.sensorType
                 },
                 series: [
-                    {
-                        data: temp
-                    }
+                    {data: temp}, 
+                    {data: min},
+                    {data: max}
                 ]
             })
             
@@ -112,11 +120,12 @@ export default function Details() {
             <label>To date:</label>
             <input type="date" value={enDate} onChange={(e) => setEnDate(e.target.value)} />
             <button onClick={() => show2()}>Show</button>
+            <div class="content">
             {response.map((a, index) => {
                 return (
                     <>
                         <p>{a.sensorType}</p>
-                        <table className="table table-hover">
+                        <table className="table table-hover" >
                             <thead>
                                 <tr>
                                     <td>Date</td>
@@ -141,11 +150,13 @@ export default function Details() {
 
                             </tbody>
                         </table>
+                        <div >
                         <HighchartsReact highcharts={Highcharts} options={chartOptions[index]} />
+                        </div>
                     </>
                 )
             })}
-
+</div>
             {/* {sensorData.map((sd, index) =>{
                 return (
                     <HighchartsReact highcharts={Highcharts} options={chartOptions[index]} />

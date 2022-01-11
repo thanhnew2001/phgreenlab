@@ -15,6 +15,7 @@ import DeviceDashBoard from './components/DeviceDashBoard';
 import StatisticData from './components/StatisticData';
 
 import Details from './components/Details';
+import Signin from './components/Signin';
 
 
 function App() {
@@ -23,9 +24,9 @@ function App() {
           <Home />
           <div>
          
-             {/* <Routes>
-              <Route path="/labs" caseSensitive={false} element={ <Labs />} />
-              </Routes> */}
+             <Routes>
+              <Route path="/signin" caseSensitive={false} element={ <Signin />} />
+              </Routes>
 
               <Routes>
              <Route path="/devices" caseSensitive={false} element={ <DeviceDashBoard />} />

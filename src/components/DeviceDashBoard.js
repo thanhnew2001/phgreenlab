@@ -62,14 +62,10 @@ export default function Devicedb() {
                         <td>Description</td>
                        
                         <td> DateSync</td>
-                        <td>SerialNumber</td>
-                        {/* <td> Friendly Name</td>
-                        <td>Model</td>
-                     
-                        <td>Type</td>
-                        <td>Lab Serial Number</td> */}
+                        <td>Status</td>
+                  
                         <td>Parameters</td>
-                        <td> Status</td>
+                       
                     </tr>
                 </thead>
                 <tbody>
@@ -89,7 +85,7 @@ export default function Devicedb() {
                                
                                 <td type="datetime">{moment(b.device.DateSync).format("DD/MM/YYYY, HH:mm")}</td>
                                 <td >
-                                <a href={url}> {b.device.SerialNumber} </a>
+                                <a href={url}> {b.device.SerialNumber} view chart </a>
                                 </td>
                                 {/* <td>{b.device.FriendlyName}</td>
                                 <td>{b.device.Model}</td>
@@ -107,9 +103,7 @@ export default function Devicedb() {
                                     }
                                     )}
                                 </td>
-                                <td > 
-                                    <a href="#">  view chart</a>
-                                   </td>
+                               
                             </tr>
 
                         )
