@@ -85,7 +85,7 @@ export default function Devicedb() {
                                
                                 <td type="datetime">{moment(b.device.DateSync).format("DD/MM/YYYY, HH:mm")}</td>
                                 <td >
-                                <a href={url}> {b.device.SerialNumber} view chart </a>
+                                <a href={url}> {b.device.SerialNumber} /view chart </a>
                                 </td>
                                 {/* <td>{b.device.FriendlyName}</td>
                                 <td>{b.device.Model}</td>

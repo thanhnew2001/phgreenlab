@@ -4,12 +4,13 @@ export default function Signin(){
     const[email, setEmail]=useState('')
     const[password, setPassword]=useState('')
     const[data, setData]=useState([])
-    const endPoint="http://127.0.0.1:3000/Users"
-   
+    // const basedURL = "https://thegreenlab.xyz"
+    const basedURL = "http://127.0.0.1:3000"
     async function login(){
-        const response = await fetch(endPoint,{
+        const response = await fetch(basedURL+"/Users/Auth/Login",{
             method: 'POST',
-            headers:{'Authorization':'Basic aGllbkBnbWFpbC5jb206MTIz' },
+            headers:{'Content-Type':'application/json',
+            'Authorization':'Basic dnZAZ21haWwuY29tOjEyMzQ1Ng==' },
             body: JSON.stringify({email:email, password:password})
         })
         console.log(response);

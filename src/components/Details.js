@@ -10,6 +10,7 @@ export default function Details() {
     const [response, setResponse] = useState([])
     const [stDate, setStDate] = useState('')
     const [enDate, setEnDate] = useState('')
+    // const [showTable, setShowTable] = useState(false)
 
     const [chartOptions, setChartOptions] = useState([])
 
@@ -18,11 +19,11 @@ export default function Details() {
     function today() {
         return new Date();
     }
-    
+
     function lastWeek() {
-        return new Date(today().getTime() - 30*24 * 60 * 60 * 1000);
+        return new Date(today().getTime() - 30 * 24 * 60 * 60 * 1000);
     }
-    
+
     // Get formatted date YYYY-MM-DD
     function getFormattedDate(date) {
         return date.getFullYear()
@@ -59,10 +60,11 @@ export default function Details() {
         setResponse(response)
     }
 
+
     const show2 = async () => {
         let queryString = window.location.search
         let params = new URLSearchParams(queryString);
-        let serialNumber = params.get("DeviceSerialNumber"); 
+        let serialNumber = params.get("DeviceSerialNumber");
 
         // const endPoint = 'http://127.0.0.1:3000/Datums/StatisticDataByDevice?DeviceSerialNumber=CA21101009-03&StartDate=2021-12-01&EndDate=2022-01-06'
         const endPoint = `${basedURL}/Datums/StatisticDataByDevice?DeviceSerialNumber=${serialNumber}&StartDate=${stDate}&EndDate=${enDate}`
@@ -71,46 +73,44 @@ export default function Details() {
             headers: { 'Authorization': 'Basic aGllbkBnbWFpbC5jb206MTIz' }
         })
         const response = await data.json()
+        console.log(response)
         setResponse(response)
 
-        
+
         let sOptions = []
         for (var i = 0; i < response.length; i++) {
             //di qua tung sensor
             let sensor = response[i]
-            
+
             let temp = []
             for (var j = 0; j < sensor.data.length; j++) {
                 temp.push(sensor.data[j].AVG)
             }
             let min = []
             for (var j = 0; j < sensor.data.length; j++) {
-                min.push(sensor.data[j].MIN)   
+                min.push(sensor.data[j].MIN)
             }
             let max = []
             for (var j = 0; j < sensor.data.length; j++) {
-                max.push(sensor.data[j].MAX)   
+                max.push(sensor.data[j].MAX)
             }
             sOptions.push({
                 chart: {
                     type: 'spline'
                 },
                 title: {
-
                     text: sensor.sensorType
                 },
                 series: [
-                    {data: temp}, 
-                    {data: min},
-                    {data: max}
+                    { name:'Avg', data: temp },
+                    { name: 'Min', data: min },
+                    { name: 'Max',data: max }
                 ]
             })
-            
+
         }
         setChartOptions(sOptions)
     }
-
-    console.log(chartOptions)
 
     return (
         <div>
@@ -120,50 +120,47 @@ export default function Details() {
             <label>To date:</label>
             <input type="date" value={enDate} onChange={(e) => setEnDate(e.target.value)} />
             <button onClick={() => show2()}>Show</button>
-            <div class="content">
-            {response.map((a, index) => {
-                return (
-                    <>
-                        <p>{a.sensorType}</p>
-                        <table className="table table-hover" >
-                            <thead>
-                                <tr>
-                                    <td>Date</td>
-                                    <td>Avg</td>
-                                    <td>Min</td>
-                                    <td>Max</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {a.data.map(b => {
-                                    return (
-                                        <tr>
+            {/* <button onClick={() => showtable()}>ShowData</button> */}
+        
+            <div className="table-chart">
+                {response.map((a, index) => {
+                    return (
+                        <>
+                            <p>{a.sensorType}</p>
+                            <table className="table table-hover" >
+                                <thead>
+                                    <tr>
+                                        <td>Date</td>
+                                        <td>Avg</td>
+                                        <td>Min</td>
+                                        <td>Max</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {a.data.map(b => {
+                                        return (
+                                            <tr>
+                                                <td>{moment(b.DateOnly).format("YYYY-MM-DD")}</td>
+                                                <td>{Math.round(100 * b.AVG) / 100}</td>
+                                                <td>{Math.round(100 * b.MIN, 2) / 100}</td>
+                                                <td>{Math.round(100 * b.MAX, 2) / 100}</td>
 
-                                            <td>{moment(b.DateOnly).format("YYYY-MM-DD")}</td>
-                                            <td>{Math.round(100*b.AVG)/100}</td>
-                                            <td>{Math.round(100*b.MIN, 2)/100}</td>
-                                            <td>{Math.round(100*b.MAX, 2)/100}</td>
+                                            </tr>
+                                        )
+                                    })}
 
-                                        </tr>
-                                    )
-                                })}
-
-                            </tbody>
-                        </table>
-                        <div >
-                        <HighchartsReact highcharts={Highcharts} options={chartOptions[index]} />
-                        </div>
-                    </>
-                )
-            })}
-</div>
-            {/* {sensorData.map((sd, index) =>{
-                return (
-                    <HighchartsReact highcharts={Highcharts} options={chartOptions[index]} />
-                )
-            })} */}
-
-
+                                </tbody>
+                            </table>
+                          
+                           
+                                <HighchartsReact highcharts={Highcharts} options={chartOptions[index]} />
+                    
+                        </>
+                
+                    )
+                    })}
+            
+            </div>
 
         </div>
 
