@@ -59,8 +59,14 @@
   display: flex;
   justify-self: center;
   flex-wrap: wrap;
+  font-size: 24px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+ 
+  font-weight: bolder;
   
 }
+
+
 .table-chart{
   height: 400px;
   width: 400px;
@@ -79,6 +85,7 @@
   /* background-image: url("http://www.noithatphongthinghiem.com/upload/images/LOGO%20bestlab_1(1).png"); */
   background-color: rgba(33, 180, 248, 0.507);
   border-radius: 10%;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 .table-dark{
   font-size: 19px;

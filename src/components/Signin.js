@@ -17,19 +17,21 @@ export default function Signin(){
         const data =await response.json()
     setData(data)
     }
+   
+
     return(
         <div className="signin" >
             
             
-        <h1>Sign In</h1>
+        <h1 style={{textAlign: 'center', fontFamily:'inherit', color:'grey', fontWeight:'bold', fontSize:'40px'}}>Sign In</h1> <br/>
         <label>Email:</label> <br/>
         <input type="text" placeholder="email"/>
         <label>Password:</label>
         <input type="password" placeholder="password"/> <br/><br/>
 
         <button type="button" onClick={()=> login()} >Sign In</button> <br/><br/>
-        <a href="/forgotpassword">Forgot Password</a><br/>
-        <a href="/signup">Sign Up</a>
+        <a style={{fontWeight: 'normal'}} href="/forgotpassword">Forgot Password</a> &nbsp;&nbsp;&nbsp;
+        <a style={{fontWeight: 'normal'}} href="/signup">Sign Up</a>
         </div>
     )
 }
