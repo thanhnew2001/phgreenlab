@@ -11,12 +11,20 @@ export default function Signin(){
             method: 'POST',
             headers:{'Content-Type':'application/json',
             'Authorization':'Basic dnZAZ21haWwuY29tOjEyMzQ1Ng==' },
-            body: JSON.stringify({email:email, password:password})
+            body: JSON.stringify({Email:email, psassword:password})
         })
-        console.log(response);
-        const data =await response.json()
-    setData(data)
-    }
+        const data = await response.json()
+        console.log(data)
+      .then(data=>setData(data))  
+
+    .then(json=> {
+        //sessionStorage
+        sessionStorage.setItem("base64", json.hash) 
+      
+        //show main body
+        window.location.reload();
+    })
+}
    
 
     return(

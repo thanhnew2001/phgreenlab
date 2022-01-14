@@ -59,7 +59,7 @@
   display: flex;
   justify-self: center;
   flex-wrap: wrap;
-  font-size: 24px;
+  font-size: 19px;
   font-family: Georgia, 'Times New Roman', Times, serif;
  
   font-weight: bolder;
@@ -88,9 +88,13 @@
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 .table-dark{
-  font-size: 19px;
+  font-size: 18px;
+  background-color: blue;
 
 }
+/* .datadetailschart{
+  font-size: 14px;
+} */
  
 
 

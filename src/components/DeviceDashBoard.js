@@ -39,42 +39,30 @@ export default function Devicedb() {
             bigdata = [...bigdata, { device: d, deviceData: deviceData }]
 
             setBigdata(bigdata)
-            // console.log(bigdata)
-
-
+            
         }
         setData(data)
         setLoading(false)
     }, []);
-
-
-
-
-
     return (
         <div className="container mt-8">
             <h1 className="text-muted" style={{padding: 20}}> Online Monitoring System</h1>
-
             <table className="table">
                 <thead className="table-dark">
                     <tr>
-
-                        <td>Description</td>
-                       
+                        <td>Description</td>                     
                         <td> DateSync</td>
-                        <td>Status</td>
-                  
+                        <td>Status</td>                 
                         <td>Parameters</td>
-                       
+                        <td>Chart</td>
                     </tr>
                 </thead>
                 <tbody>
-
                     {bigdata.map(b => {
                         let url=`/details?DeviceSerialNumber=${b.device.SerialNumber}`
+                        let url1=`/datadetails?DeviceSerialNumber=${b.device.SerialNumber}`
                         return (
                             <tr >
-
                                 <td>{b.device.Description} <br/>
                                 FriendlyName: {b.device.FriendlyName} <br/>
                                 Model: {b.device.Model} <br/>
@@ -85,13 +73,9 @@ export default function Devicedb() {
                                
                                 <td type="datetime">{moment(b.device.DateSync).format("DD/MM/YYYY, HH:mm")}</td>
                                 <td >
-                                <a href={url}> {b.device.SerialNumber} /view chart </a>
+                                <a href={url}> {b.device.SerialNumber} /chartbyvalue </a> <br/>
+                                
                                 </td>
-                                {/* <td>{b.device.FriendlyName}</td>
-                                <td>{b.device.Model}</td>
-                                <td >{b.device.SerialNumber}</td>
-                                <td>{b.device.Type}</td>
-                                <td>{b.device.LabSerialNumber}</td> */}
                                 <td>
                                     {b.deviceData.map(a => {
                                         return (
@@ -103,7 +87,7 @@ export default function Devicedb() {
                                     }
                                     )}
                                 </td>
-                               
+                                <td> <a href={url1}>  /chartbydate </a></td>
                             </tr>
 
                         )
@@ -111,13 +95,6 @@ export default function Devicedb() {
 
                 </tbody>
             </table>
-            {/* {bigdata.map((d)=>{
-                return(
- <span key={d.Id}> {d.device.SerialNumber}</span>
-                )
-            })} */}
-
-
         </div>
 
     )

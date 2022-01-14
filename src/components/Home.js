@@ -25,12 +25,15 @@ export default function Home() {
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/devices">OMS</a>
-        </li>
+        </li> 
+       
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
         {/* <li class="nav-item">
           <a class="nav-link" href="#">Link</a>
         </li>   */}
+        
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" style={{alignItems: 'self-end'}}>smartpH</a>
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" style={{float: 'right'}}>smartpH</a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="/signin">Sign In</a></li>
             <li><a class="dropdown-item" href="/signup">Sign Up</a></li>
