@@ -39,9 +39,9 @@
 .dot {
   height: 70px;
   width: 70px;
-  background-color: dodgerblue;
+  background-color: #80e27e;
   border-radius: 50%;
-  border: 0.35em solid #696a6d;
+  border: 0.35em solid #87888b;
   /* box-shadow: 0 0 rgba(15, 28, 63, 0.125); */
   height: 90px;
   width: 90px;
@@ -50,21 +50,29 @@
   margin: 2px;
   text-align:center;
   font-size: 16px;
-  color: rgb(41, 8, 133);
+  color: rgb(26, 2, 92);
   font-weight: bold;
   justify-content:space-around;
+}
+.navbar{
+  background-color: #9b9e9b;
+  color: #ce1590;
 }
 
 .container{
   display: flex;
   justify-self: center;
   flex-wrap: wrap;
-  font-size: 19px;
+  font-size: 16px;
   font-family: Georgia, 'Times New Roman', Times, serif;
- 
+  border-color: #87888b;
   font-weight: bolder;
+  /* background-image: url("/src/components/logo.jpg"); */
+  
+ 
   
 }
+
 
 
 .table-chart{
@@ -75,21 +83,25 @@
 }
 .signin{
   flex: 1;
-  height: 450px;
-  width: 400px;
+  flex-direction: column;
+  height: 480px;
+  width: 500px;
   justify-content: center;
-  padding: 50px;
+  padding: 100px;
   font-weight: bold;
   font-size: 20px;
-  margin: 100px;
+  margin: 120px;
   /* background-image: url("http://www.noithatphongthinghiem.com/upload/images/LOGO%20bestlab_1(1).png"); */
-  background-color: rgba(33, 180, 248, 0.507);
+  /* background-color: rgba(33, 180, 248, 0.507); */
   border-radius: 10%;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-image: url("/src/components/logo.jpg");background-origin: padding-box; background-repeat: no-repeat; background-size: 500px 500px; border: 5px dotted rgb(156, 151, 151); padding: 20px;
+  opacity: 0.7;
+  filter: alpha(opacity=80)
 }
-.table-dark{
+.table-head{
   font-size: 18px;
-  background-color: blue;
+  background-color:#4caf50;
 
 }
 /* .datadetailschart{

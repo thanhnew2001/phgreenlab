@@ -14,7 +14,7 @@ export default function Details() {
 
     const [chartOptions, setChartOptions] = useState([])
 
-    const basedURL = "https://thegreenlab.xyz"
+    const basedURL = "http://thegreenlab.xyz:3000"
 
     function today() {
         return new Date();

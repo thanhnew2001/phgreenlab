@@ -9,7 +9,7 @@ export default function DataDetails() {
     const [nresponse, setNresponse] = useState([])
     const [ndata, setNdata] = useState([0])
     const [sensorType, setSensorType] = useState('')
-    const basedURL = "https://thegreenlab.xyz"
+    const basedURL = "http://thegreenlab.xyz:3000"
     const localURL = "http://127.0.0.1:3000"
     const [chartOptions, setChartOptions] = useState([])
     const [receivedDate, setReceivedDate] = useState('')
@@ -21,7 +21,7 @@ export default function DataDetails() {
     }, [])
 
     const loadDevice = async (s) => {
-        const endPoint = `https://thegreenlab.xyz/Devices/Search?SerialNumber=${s}`
+        const endPoint = `http://thegreenlab.xyz:3000/Devices/Search?SerialNumber=${s}`
         const res = await fetch(endPoint, {
             // const nresponse = await fetch(`${localURL}/Datums/Last7Days?DeviceSerialNumber=FH21101006&SensorType=pH`,{
             method: 'GET',
@@ -94,10 +94,13 @@ export default function DataDetails() {
             <h4>Lastest 7 Days Data </h4>
             {sensors.map((sensor, index) => {
                 return (
-
+                   <div>
+                       <p>{sensor.DeviceSerialNumber}</p>
                     <div>
+                 
                         <HighchartsReact highcharts={Highcharts} options={chartOptions[index]} />
 
+                    </div>
                     </div>
                 )
             })

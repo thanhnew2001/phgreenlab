@@ -12,7 +12,7 @@ export default function Devicedb() {
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(true)
     const [bigdata, setBigdata] = useState([])
-    const basedURL = "https://thegreenlab.xyz"
+    const basedURL = "http://thegreenlab.xyz:3000"
 
 
 
@@ -48,7 +48,7 @@ export default function Devicedb() {
         <div className="container mt-8">
             <h1 className="text-muted" style={{padding: 20}}> Online Monitoring System</h1>
             <table className="table">
-                <thead className="table-dark">
+                <thead className="table-head">
                     <tr>
                         <td>Description</td>                     
                         <td> DateSync</td>
@@ -73,7 +73,7 @@ export default function Devicedb() {
                                
                                 <td type="datetime">{moment(b.device.DateSync).format("DD/MM/YYYY, HH:mm")}</td>
                                 <td >
-                                <a href={url}> {b.device.SerialNumber} /chartbyvalue </a> <br/>
+                                <a style={{color:'#087f23', fontWeight:'normal'}} href={url}> {b.device.SerialNumber} /chartbyvalue </a> <br/>
                                 
                                 </td>
                                 <td>
@@ -87,7 +87,7 @@ export default function Devicedb() {
                                     }
                                     )}
                                 </td>
-                                <td> <a href={url1}>  /chartbydate </a></td>
+                                <td >  <a style={{color:'#087f23', fontWeight:'normal'}} href={url1}>  /chartbydate </a></td>
                             </tr>
 
                         )
