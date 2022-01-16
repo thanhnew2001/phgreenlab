@@ -31,10 +31,10 @@ export default function Signin(){
         <div className="signin" >
             
             
-        <h1 style={{textAlign: 'center', fontFamily:'inherit', color:'grey', fontWeight:'bold', fontSize:'40px'}}>Sign In</h1> <br/>
+        <h1 style={{textAlign: 'center', fontFamily:'inherit', color:'#757575', fontWeight:'bold', fontSize:'40px'}}>Sign In</h1> <br/>
         <label>Email:</label> <br/>
-        <input type="text" placeholder="email"/>
-        <label>Password:</label>
+        <input type="text" placeholder="email"/> <br/>
+        <label>Password:</label> <br/>
         <input type="password" placeholder="password"/> <br/><br/>
 
         <button type="button" onClick={()=> login()} >Sign In</button> <br/><br/>
