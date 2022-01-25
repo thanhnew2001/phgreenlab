@@ -95,19 +95,13 @@ export default function DataDetails() {
             {sensors.map((sensor, index) => {
                 return (
                    <div>
-                       <p>{sensor.DeviceSerialNumber}</p>
-                    <div>
-                 
-                        <HighchartsReact highcharts={Highcharts} options={chartOptions[index]} />
-
-                    </div>
+                    <HighchartsReact highcharts={Highcharts} options={chartOptions[index]} />
                     </div>
                 )
             })
             }
         </div>
     )
-
 }
 
 

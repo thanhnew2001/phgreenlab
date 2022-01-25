@@ -15,6 +15,7 @@ import Details from './components/Details';
 import Signin from './components/Signin';
 import Chart from './components/Chart';
 import DataDetails from './components/DataDetails';
+import DashBoard from './components/Dashboard';
 
 
 function App() {
@@ -29,6 +30,10 @@ function App() {
 
               <Routes>
              <Route path="/devices" caseSensitive={false} element={ <DeviceDashBoard />} />
+             </Routes>
+
+             <Routes>
+             <Route path="/dashboard" caseSensitive={false} element={ <DashBoard />} />
              </Routes>
             
              <Routes>
