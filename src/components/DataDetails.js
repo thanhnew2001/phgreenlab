@@ -17,7 +17,7 @@ export default function DataDetails() {
     const [sensors, setSensors] = useState([])
 
     useEffect(async () => {
-        show()
+        //show()
     }, [])
 
     const loadDevice = async (s) => {
@@ -92,22 +92,17 @@ export default function DataDetails() {
     return (
         <div>
             <h4>Lastest 7 Days Data </h4>
+            <button className='btn btn-primary' onClick={()=>show()}>Show</button>
             {sensors.map((sensor, index) => {
                 return (
                    <div>
-                       <p>{sensor.DeviceSerialNumber}</p>
-                    <div>
-                 
-                        <HighchartsReact highcharts={Highcharts} options={chartOptions[index]} />
-
-                    </div>
+                    <HighchartsReact highcharts={Highcharts} options={chartOptions[index]} />
                     </div>
                 )
             })
             }
         </div>
     )
-
 }
 
 
