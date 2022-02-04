@@ -8,20 +8,20 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import Home from "./components/Home"
+import Menu from "./components/Menu"
 import DeviceDashBoard from './components/DeviceDashBoard';
 import StatisticData from './components/StatisticData';
 import Details from './components/Details';
 import Signin from './components/Signin';
 import Chart from './components/Chart';
 import DataDetails from './components/DataDetails';
-import DashBoard from './components/Dashboard';
+
 
 
 function App() {
  return (
         <Router >
-          <Home />
+          <Menu />
           <div>
          
              <Routes>
@@ -32,9 +32,9 @@ function App() {
              <Route path="/devices" caseSensitive={false} element={ <DeviceDashBoard />} />
              </Routes>
 
-             <Routes>
+             {/* <Routes>
              <Route path="/dashboard" caseSensitive={false} element={ <DashBoard />} />
-             </Routes>
+             </Routes> */}
             
              <Routes>
              <Route path="/datadetails" caseSensitive={false} element={ <DataDetails />} />

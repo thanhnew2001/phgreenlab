@@ -1,5 +1,8 @@
 import { useState } from "react/cjs/react.development"
-import '../App.css'
+import '../App.css';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBold, faHockeyPuck, faHome, faKey, faUnlockAlt, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faKeyboard } from "@fortawesome/free-regular-svg-icons";
 export default function Signin(){
     const[email, setEmail]=useState('')
     const[password, setPassword]=useState('')
@@ -27,19 +30,23 @@ export default function Signin(){
 }
    
 
-    return(
-        <div className="signin" >
-            
-            
-        <h1 style={{textAlign: 'center', fontFamily:'inherit', color:'#757575', fontWeight:'bold', fontSize:'40px'}}>Sign In</h1> <br/>
-        <label>Email:</label> <br/>
-        <input type="text" placeholder="email"/> <br/>
-        <label>Password:</label> <br/>
-        <input type="password" placeholder="password"/> <br/><br/>
+return(
+    <div>
+    <marquee direction="up" className="slogan" >“A PIONEER OF HIGH QUALITY!”</marquee>
 
-        <button type="button" onClick={()=> login()} >Sign In</button> <br/><br/>
-        <a style={{fontWeight: 'normal'}} href="/forgotpassword">Forgot Password</a> &nbsp;&nbsp;&nbsp;
-        <a style={{fontWeight: 'normal'}} href="/signup">Sign Up</a>
-        </div>
-    )
+    <div className="signin" >
+        <h1 style={{textAlign: 'center', fontFamily:'inherit', color:'#757575', fontWeight:'bold', fontSize:'40px'}}>Sign In</h1> <br/>
+    <div className="signin-content">
+    <label><FontAwesomeIcon icon={faUser} /></label> <n/>
+    <input style={{width: 300}} type="text" placeholder="user, email"/> <br/>  <br/>
+    <label><FontAwesomeIcon icon={faKey} /></label> <n/>
+    <input style={{width: 300}} type="password" placeholder="password"/> <br/><br/>
+
+    <button type="button" onClick={()=> login()} >Sign In</button> <br/><br/><br/><br/>
+    <a style={{fontWeight: 'normal', color:'#0039cb'}} href="/forgotpassword"><FontAwesomeIcon icon={faUnlockAlt} /> Forgot Password</a> &nbsp;&nbsp;&nbsp;
+    <a style={{fontWeight: 'normal',  color:'#0039cb'}} href="/signup">Sign Up</a>
+    </div>
+    </div>
+    </div>
+)
 }

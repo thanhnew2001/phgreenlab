@@ -114,56 +114,54 @@ export default function Details() {
     }
 
     return (
-        <div>
+        <div className="details">
             <h2>Details</h2>
-            <label>From date:</label>
-            <input type="date" value={stDate} onChange={(e) => setStDate(e.target.value)} />
-            <label>To date:</label>
-            <input type="date" value={enDate} onChange={(e) => setEnDate(e.target.value)} />
+            <label>From date:</label> <n />
+            <input type="date" value={stDate} onChange={(e) => setStDate(e.target.value)} /> <n /><n />
+            <label>To date:</label><n />
+            <input type="date" value={enDate} onChange={(e) => setEnDate(e.target.value)} /> <n />
             <button onClick={() => show2()}>Show</button>
             {/* <button onClick={() => showtable()}>ShowData</button> */}
-        
-            <div className="table-chart">
-                {response.map((a, index) => {
-                    return (
-                        <>
-                            <p>{a.sensorType}</p>
-                            <table className="table table-hover" >
-                                <thead>
-                                    <tr>
-                                        <td>Date</td>
-                                        <td>Avg</td>
-                                        <td>Min</td>
-                                        <td>Max</td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {a.data.map(b => {
-                                        return (
-                                            <tr>
-                                                <td>{moment(b.DateOnly).format("YYYY-MM-DD")}</td>
-                                                <td>{Math.round(100 * b.AVG) / 100}</td>
-                                                <td>{Math.round(100 * b.MIN, 2) / 100}</td>
-                                                <td>{Math.round(100 * b.MAX, 2) / 100}</td>
+            {response.map((a, index) => {
+                return (
+                    <>
+                        <p style={{ fontWeight: 'bold', color: '#087f23', margin: 10 }}>{a.sensorType}</p>
+                        <div className="table-details">
+                            <div className="table-value">
+                                <table className="table table-hover" >
+                                    <thead>
+                                        <tr>
+                                            <td >Date</td>
+                                            <td style={{ color: '#4fc3f7' }}>Avg</td>
+                                            <td>Min</td>
+                                            <td style={{ color: '#67d669' }}>Max</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {a.data.map(b => {
+                                            return (
+                                                <tr>
+                                                    <td>{moment(b.DateOnly).format("YYYY-MM-DD")}</td>
+                                                    <td style={{ color: '#4fc3f7' }}>{Math.round(100 * b.AVG) / 100}</td>
+                                                    <td >{Math.round(100 * b.MIN, 2) / 100}</td>
+                                                    <td style={{ color: '#67d669' }}>{Math.round(100 * b.MAX, 2) / 100}</td>
+                                                </tr>
+                                            )
+                                        })}
 
-                                            </tr>
-                                        )
-                                    })}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div className="chartdetails">
 
-                                </tbody>
-                            </table>
-                          
-                           
                                 <HighchartsReact highcharts={Highcharts} options={chartOptions[index]} />
-                    
-                        </>
-                
-                    )
-                    })}
-            
-            </div>
+                            </div>
+                        </div>
+                    </>
+
+                )
+            })}
 
         </div>
-
     )
-}
+        }
