@@ -77,7 +77,7 @@
   flex:1;
   justify-content: center;
   flex-direction: column;
-  margin: 60px;
+  margin: 30px;
 }
 .table-dashboard{
   color:#424242;
@@ -196,6 +196,27 @@
   margin-left: 350px;
 
   
+}
+.container-labs{
+  color:#424242;
+  border-collapse: collapse;
+  margin-left: 100px;
+  margin-right: 200px;
+  margin-top: 50px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: normal;
+
+}
+.table-groupdevices{
+    border: 10px;
+    border-collapse: collapse;
+    border-color: #4caf50;
+}
+.table-deviceform{
+    border: 10px;
+ 
+    border-color: #4caf50;
+
 }
  
 

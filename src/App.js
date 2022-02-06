@@ -10,11 +10,12 @@ import {
 } from "react-router-dom";
 import Menu from "./components/Menu"
 import DeviceDashBoard from './components/DeviceDashBoard';
-import StatisticData from './components/StatisticData';
 import Details from './components/Details';
 import Signin from './components/Signin';
 import Chart from './components/Chart';
 import DataDetails from './components/DataDetails';
+import GroupDevices from './components/GroupDevices';
+import DevicesForm from './components/DevicesForm';
 
 
 
@@ -32,9 +33,9 @@ function App() {
              <Route path="/devices" caseSensitive={false} element={ <DeviceDashBoard />} />
              </Routes>
 
-             {/* <Routes>
-             <Route path="/dashboard" caseSensitive={false} element={ <DashBoard />} />
-             </Routes> */}
+             <Routes>
+             <Route path="/groupdevices" caseSensitive={false} element={ <GroupDevices />} />
+             </Routes>
             
              <Routes>
              <Route path="/datadetails" caseSensitive={false} element={ <DataDetails />} />
@@ -47,7 +48,7 @@ function App() {
              </Routes>
 
              <Routes>
-             <Route path="/statistic" caseSensitive={false} element={ <StatisticData />}  />
+             <Route path="/devicesform" caseSensitive={false} element={ <DevicesForm />}  />
              </Routes>
              <Routes>
              <Route path="/chart" caseSensitive={false} element={ <Chart />}  />
