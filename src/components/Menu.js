@@ -20,7 +20,7 @@ export default function Menu() {
         <div class="collapse navbar-collapse" id="collapsibleNavbar" >
           <ul class="navbar-nav">
             <li class="nav-item">
-            <a style={{ color: '#388e3c', fontSize: 30 }} class="nav-link" href="/signin"> <FontAwesomeIcon icon={faHome} /> </a>
+            <a style={{ color: '#388e3c', fontSize: 30 }} class="nav-link" href="/"> <FontAwesomeIcon icon={faHome} /> </a>
             </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <li class="nav-item">
               <a style={{ color: '#388e3c', fontSize: 30 }} class="nav-link" href="/devices">OMS</a>

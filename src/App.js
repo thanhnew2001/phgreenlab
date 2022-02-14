@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import React,{useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import {
@@ -18,16 +19,21 @@ import GroupDevices from './components/GroupDevices';
 import DevicesForm from './components/DevicesForm';
 
 
-
 function App() {
+  const [showLogin, setShowLogin] = useState(true)
  return (
-        <Router >
+   <div>
+       
           <Menu />
+          {showLogin?
+            <Signin />
+        :
+        <Router >
           <div>
          
-             <Routes>
+             {/* <Routes>
               <Route path="/signin" caseSensitive={false} element={ <Signin />} />
-              </Routes>
+              </Routes> */}
 
               <Routes>
              <Route path="/devices" caseSensitive={false} element={ <DeviceDashBoard />} />
@@ -54,7 +60,10 @@ function App() {
              <Route path="/chart" caseSensitive={false} element={ <Chart />}  />
              </Routes>
 </div>
+
    </Router>
+   }
+  </div>        
 )
 }
 

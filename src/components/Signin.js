@@ -15,19 +15,27 @@ export default function Signin(){
             method: 'POST',
             headers:{'Content-Type':'application/json',
             'Authorization':'Basic dnZAZ21haWwuY29tOjEyMzQ1Ng==' },
-            body: JSON.stringify({email:email, password:password})
+            body: JSON.stringify({Email:email, Password:password})
         })
         const data = await response.json()
-        // console.log(data1)
+        try{
+       if (isLogin===true){
+           alert("Loging is successful")
+        setData(data)
       setIsLogin(isLogin)
-
-    // .then(json=> {
-    //     //sessionStorage
-    //     sessionStorage.setItem("base64", json.hash) 
+       }
+       else{
+           console.log("failed");
+       }
+    }
+    catch (error){
       
-    //     //show main body
-    //     window.location.reload();
-    // })
+           alert("Error")
+       
+    }
+
+
+ 
 }
    
 
