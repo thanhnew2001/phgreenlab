@@ -205,18 +205,38 @@
   margin-top: 50px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: normal;
+display: flex;
+flex-direction: column;
+/* align-items: center; */
 
 }
+.form{
+  display: flex;
+justify-content: center;
+
+  flex-direction: row;
+margin-bottom: 30px;
+}
+.formg1{
+
+  margin-right: 50px;
+}
+
 .table-groupdevices{
     border: 10px;
     border-collapse: collapse;
     border-color: #4caf50;
 }
-.table-deviceform{
-    border: 10px;
+.infoTable{
+  display: flex;
  
-    border-color: #4caf50;
-
+}
+.btnDeviceForm{
+  margin-left: 70px;
+  display: flex;
+  margin-bottom: 20px;
+  justify-content: center;
+  
 }
  
 

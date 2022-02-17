@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import {
@@ -17,17 +17,24 @@ import Chart from './components/Chart';
 import DataDetails from './components/DataDetails';
 import GroupDevices from './components/GroupDevices';
 import DevicesForm from './components/DevicesForm';
+import SignUp from './components/SignUp';
 
 
 function App() {
-  const [showLogin, setShowLogin] = useState(true)
+  const [showLogin, setShowLogin] = useState(false)
+  useEffect(() => {
+    document.title = "Online Monitoring System "
+    if (sessionStorage.getItem('token') === null || sessionStorage.getItem('token') === ""){
+       setShowLogin(true)
+    }
+  }, []);
  return (
    <div>
        
           <Menu />
-          {showLogin?
+          {/* {showLogin?
             <Signin />
-        :
+        : */}
         <Router >
           <div>
          
@@ -59,10 +66,13 @@ function App() {
              <Routes>
              <Route path="/chart" caseSensitive={false} element={ <Chart />}  />
              </Routes>
+             <Routes>
+             <Route path="/signup" caseSensitive={false} element={ <SignUp />}  />
+             </Routes>
 </div>
 
    </Router>
-   }
+   {/* } */}
   </div>        
 )
 }

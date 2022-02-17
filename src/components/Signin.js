@@ -18,21 +18,21 @@ export default function Signin(){
             body: JSON.stringify({Email:email, Password:password})
         })
         const data = await response.json()
-        try{
-       if (isLogin===true){
-           alert("Loging is successful")
+    //     try{
+    //    if (isLogin===true){
+    //        alert("Loging is successful")
         setData(data)
       setIsLogin(isLogin)
-       }
-       else{
-           console.log("failed");
-       }
-    }
-    catch (error){
+    //    }
+    //    else{
+    //        console.log("failed");
+    //    }
+    // }
+    // catch (error){
       
-           alert("Error")
+    //        alert("Error")
        
-    }
+    // }
 
 
  
@@ -59,7 +59,7 @@ return(
     </div>
      
     </div>
- :""}
+ : ""}
     </div>
 )
 }

@@ -1,6 +1,7 @@
 
 import logo from './logo.jpg';
 import React from "react";
+import Logout from './Logout';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome, faKey, faUser, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" />;
@@ -46,7 +47,14 @@ export default function Menu() {
                 <ul class="dropdown-menu  " >
                   <li><a class="dropdown-item" href="/signin">Sign In</a></li>
                   <li><a class="dropdown-item" href="/signup">Sign Up</a></li>
-                  <li><a class="dropdown-item" href="/logout"> <FontAwesomeIcon icon={faSignOutAlt} fixedWidth /> Log Out</a></li>
+                  <li>
+                  <a class="dropdown-item" href="/signout">
+                        {sessionStorage.getItem('token')!== null && sessionStorage.getItem('token')!==""? 
+                        <Logout/> : ""} 
+                        <FontAwesomeIcon icon={faSignOutAlt} fixedWidth /> Log Out</a>
+                       
+                    </li>
+                   
                 </ul>
               </li>
             </div>

@@ -4,8 +4,11 @@ import { faBold, faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { faKeyboard } from "@fortawesome/free-regular-svg-icons";
 import moment from 'moment';
 
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" />;
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
 export default function DevicesForm() {
-const datetime = moment()
+    const datetime = moment()
     const [data, setData] = useState([])
     const [id, setId] = useState('')
     const [friendlyName, setFriendlyName] = useState('')
@@ -17,7 +20,7 @@ const datetime = moment()
     const [labSerialNumber, setLabSerialNumber] = useState('')
     const [dateSync, setDateSync] = useState('')
     const [isActive, setIsActive] = useState('')
-
+    const basedURL1 = "http://127.0.0.1:3000"
     const basedURL = "http://thegreenlab.xyz:3000"
     const [loading, setLoading] = useState(true)
 
@@ -29,8 +32,8 @@ const datetime = moment()
                     'Content-Type': 'application/json',
                     'Authorization': 'Basic aGllbkBnbWFpbC5jb206MTIz'
                 },
-                body: JSON.stringify({ dateSync: dateSync, description: description, friendlyName: friendlyName, model: model, serialNumber: serialNumber, type: type, isActive: isActive, lab_Id: lab_Id, labSerialNumber: labSerialNumber })
-            }).then(data => setData(data))
+                body: JSON.stringify({ DateSync: dateSync, Description: description, FriendlyName: friendlyName, Model: model, SerialNumber: serialNumber, Type: type,  LabSerialNumber: labSerialNumber,IsActive: isActive})
+            }).then(data => load())
         }
         else {
             fetch(basedURL + "/Devices", {
@@ -39,15 +42,13 @@ const datetime = moment()
                     'Content-Type': 'application/json',
                     'Authorization': 'Basic aGllbkBnbWFpbC5jb206MTIz'
                 },
-                body: JSON.stringify({ id: id, dateSync: dateSync, description: description, friendlyName: friendlyName, model: model, serialNumber: serialNumber, type: type, isActive: isActive, lab_Id: lab_Id, labSerialNumber: labSerialNumber })
-            }).then(data => setData(data))
+                body: JSON.stringify({ Id: id, DateSync: dateSync, Description: description, FriendlyName: friendlyName, Model: model, SerialNumber: serialNumber, Type: type, LabSerialNumber: labSerialNumber ,IsActive: isActive})
+            }).then(data => load())
 
         }
 
     }
-
-
-    useEffect(async () => {
+    const load = async () => {
         const response = await fetch(basedURL + "/Devices", {
             method: 'GET',
             headers: { 'Authorization': 'Basic aGllbkBnbWFpbC5jb206MTIz' }
@@ -55,6 +56,10 @@ const datetime = moment()
         const data = await response.json()
         setData(data)
         setLoading(false)
+    }
+
+    useEffect(() => {
+        load()
     }, []);
 
     // function toggle(checked) {
@@ -69,27 +74,26 @@ const datetime = moment()
     // }
 
     const checked = document.querySelector('#isActive:checked') !== null;
-    console.log(checked); 
+    // console.log(checked); 
 
-    const editDevice = (dateSync, description, friendlyName, model, serialNumber, type, isActive, lab_Id, labSerialNumber) => {
+    const editDevice = (id,dateSync, description, friendlyName, model, serialNumber, type, labSerialNumber,isActive) => {
+        setId(id)
+        setDateSync(dateSync)
         setDescription(description)
         setFriendlyName(friendlyName)
         setModel(model)
         setSerialNumber(serialNumber)
         setType(type)
-        setIsActive(isActive)
         setLabSerialNumber(labSerialNumber)
-        setDateSync(dateSync)
-        setLab_Id(lab_Id)
-
-
+        setIsActive(isActive)
+        
     }
 
-    const deleteDevice = (id) => {
-        fetch(basedURL + "/Devices" + "/" + id, {
+    const deleteDevice = (Id) => {
+        fetch(basedURL + "/Devices" + "/" + Id, {
             method: "DELETE",
             headers: { 'Authorization': 'Basic aGllbkBnbWFpbC5jb206MTIz' }
-        }).then(data => setData(data))
+        }).then(data => load())
 
     }
     const addnew = () => {
@@ -100,78 +104,98 @@ const datetime = moment()
         setType('')
         setIsActive('')
         setId('')
-        setLab_Id('')
         setLabSerialNumber('')
         setDateSync('')
+       
     }
 
 
     return (
-        <div className="container-labs">
-            <h3>Devices</h3>
-            <input type="hidden" className="form-control" value={id} onChange={(e) => setId(e.target.value)} />
-            <label>DateSync:</label>
-            <input type="datetime-local" className="form-control" value={dateSync} onChange={(e) => setDateSync(e.target.value)} />
-            <label>Description:</label>
-            <input type="text" className="form-control" value={description} onChange={(e) => setDescription(e.target.value)} />
+        <div id="devicesform" className="container-labs">
+            <h3 style={{ marginLeft: 80 , fontWeight:'bold'}}>Devices</h3>
+            
+                <div className="form">
+                    <div className="formg1">
+                        <div class="mb-3 mt-3">
+                            <input type="hidden" className="form-control" value={id} onChange={(e) => setId(e.target.value)} />
+                        </div>
+                        <div class="mb-3 mt-3">
+                            <label style={{width:500, fontWeight:'bold'}}>DateSync:</label>
+                            <input style={{width:500}} type="datetime" className="form-control" value={dateSync} onChange={(e) => setDateSync(e.target.value)} />
+                        </div>
+                        <label style={{width:500, fontWeight:'bold'}}>Description:</label>
+                        <input style={{width:500}} type="text" className="form-control" value={description} onChange={(e) => setDescription(e.target.value)} />
+                        <div class="mb-3 mt-3">
+                            <label style={{width:500, fontWeight:'bold'}}>FriendlyName:</label>
+                            <input style={{width:500}} type="text" className="form-control" value={friendlyName} onChange={(e) => setFriendlyName(e.target.value)} />
+                        </div>
+                        <div class="mb-3 mt-3">
+                            <label style={{width:500, fontWeight:'bold'}}>Model:</label>
+                            <input style={{width:500}} type="text" className="form-control" value={model} onChange={(e) => setModel(e.target.value)} />
+                        </div>
+                    </div>
+                    <div className="formg2">
 
-            <label>FriendlyName:</label>
-            <input type="text" className="form-control" value={friendlyName} onChange={(e) => setFriendlyName(e.target.value)} />
-
-            <label>Model:</label>
-            <input type="text" className="form-control" value={model} onChange={(e) => setModel(e.target.value)} />
-
-            <label>SerialNumber:</label>
-            <input type="text" className="form-control" value={serialNumber} onChange={(e) => setSerialNumber(e.target.value)} />
-
-            <label>Type:</label>
-            <input type="text" className="form-control" value={type} onChange={(e) => setType(e.target.value)} />
-            <label>Lab_Id:</label>
-            <input type="text" className="form-control" value={lab_Id} onChange={(e) => setLab_Id(e.target.value)} />
-            <label>LabSerialNumber:</label>
-            <input type="text" className="form-control" value={labSerialNumber} onChange={(e) => setLabSerialNumber(e.target.value)} />
-
-            <label>IsActive:</label>
-            <input type="checkbox" id="isActive" value="yes" /> <br />
-            <button onClick={() => save()}>Save</button> <n />
-            <button onClick={() => addnew()}>Add new</button> <br/><br/>
+                        <div class="mb-3 mt-3">
+                            <label style={{width:500, fontWeight:'bold'}}>SerialNumber:</label>
+                            <input style={{width:500}} type="text" className="form-control" value={serialNumber} onChange={(e) => setSerialNumber(e.target.value)} />
+                        </div>
+                        <div class="mb-3 mt-3">
+                            <label style={{width:500, fontWeight:'bold'}}>Type:</label>
+                            <input style={{width:500}} type="text" className="form-control" value={type} onChange={(e) => setType(e.target.value)} />
+                        </div>
+                        <div class="mb-3 mt-3">
+                            <label style={{width:500, fontWeight:'bold'}}>LabSerialNumber:</label>
+                            <input style={{width:500}} type="text" className="form-control" value={labSerialNumber} onChange={(e) => setLabSerialNumber(e.target.value)} />
+                        </div>
+                        <div class="mb-3 mt-3">
+                            <label style={{fontWeight:'bold'}}>IsActive:</label> &nbsp;
+                            <input style={{width:20, height:20, fontWeight:'bold'}} type="checkbox" id="isActive" value="yes" /> 
+                        </div>
+                    </div>
+                </div>
+                <div className="btnDeviceForm">
+                    <button class="btn btn-primary" style={{fontWeight:'bold'}} onClick={() => save()}>Save</button> &nbsp; &nbsp;
+                    <button class="btn btn-primary" style={{fontWeight:'bold'}} onClick={() => addnew()}>Add new</button> 
+                </div>
          
+
+
+            <div className="infoTable">
                 <table className="table table-bordered">
-                    <thead>
+                    <thead style={{fontWeight:'bold'}}>
                         <tr>
-                        <td>ID</td>
+                            <td>ID</td>
                             <td>DateSync</td>
-                            <td> Description</td>
+                            <td>Description</td>
                             <td> FriendlyName</td>
                             <td> Model</td>
                             <td> SerialNumber</td>
                             <td> Type </td>
-                            <td>Lab_Id</td>
                             <td>LabSerialNumber</td>
                             <td>IsActive</td>
-                            <td>Active</td>
+                            <td>Action</td>
                         </tr>
                     </thead>
 
                     <tbody>
-                        {data.map(e => {
+                        {data.map((e, index) => {
                             return (
                                 <>
                                     <tr>
                                         {/* <td>  <input type="checkbox" id="checked" /> </td> */}
-                                        <td>{e.Id}</td>  
-                                        <td>{moment(e.DateSync).format("DD/MM/YY,HH:mm")}</td>                                      
+                                        <td>{e.Id}</td>
+                                        <td>{moment(e.DateSync).format("DD/MM/YY,HH:mm")}</td>
                                         <td> {e.Description}</td>
                                         <td>{e.FriendlyName} </td>
                                         <td> {e.Model}</td>
                                         <td>{e.SerialNumber}</td>
-                                        <td>{e.Type}</td>                         
-                                        <td>{e.Lab_Id}</td>
+                                        <td>{e.Type}</td>
                                         <td>{e.LabSerialNumber}</td>
                                         <td>{e.IsActive}</td>
                                         <td>
-                                            <button className="btn btn-success" onClick={() => editDevice(e.DateSync,e.Description, e.FriendlyName,  e.Model, e.SerialNumber, e.Type, e.IsActive, e.Lab_Id, e.LabSerialNumber)}><FontAwesomeIcon icon={faEdit} /></button> <n/>
-                                            <button className="btn btn-success" onClick={() => deleteDevice(e._id)}> <FontAwesomeIcon icon={faTrashAlt} /> </button>
+                                            <button className="btn btn-success" onClick={() => editDevice(e.Id,moment(e.DateSync).format("DD/MM/YY,HH:mm"), e.Description, e.FriendlyName, e.Model, e.SerialNumber, e.Type,  e.LabSerialNumber,e.IsActive,)}><FontAwesomeIcon icon={faEdit} /></button> &nbsp;
+                                            <button className="btn btn-success" onClick={() => deleteDevice(e.Id)}> <FontAwesomeIcon icon={faTrashAlt} /> </button>
                                         </td>
                                     </tr>
                                     {/* <Link href={`/wpa/${e.id}`}>{e.title}</Link> */}
@@ -180,8 +204,9 @@ const datetime = moment()
                         }
                         )}
                     </tbody>
-                </table>               
+                </table>
             </div>
+        </div>
     );
 }
 
