@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import React,{useState, useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import {
@@ -8,52 +9,78 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import Home from "./components/Home"
+import Menu from "./components/Menu"
 import DeviceDashBoard from './components/DeviceDashBoard';
-import StatisticData from './components/StatisticData';
 import Details from './components/Details';
 import Signin from './components/Signin';
 import Chart from './components/Chart';
 import DataDetails from './components/DataDetails';
-import DashBoard from './components/Dashboard';
+import GroupDevices from './components/GroupDevices';
+import DevicesForm from './components/DevicesForm';
+import SignUp from './components/SignUp';
 
 
 function App() {
+  const [showLogin, setShowLogin] = useState(false)
+  useEffect(() => {
+    document.title = "Online Monitoring System "
+    if (localStorage.getItem('Email') === null || localStorage.getItem('Email') === ""){
+       setShowLogin(true)
+    }
+    else{
+      setShowLogin(false)
+    }
+  }, []);
  return (
+   <div>
+       
+
+          <Menu />
+          {showLogin?
+            <Signin />
+        :
         <Router >
-          <Home />
-          <div>
-         
-             <Routes>
-              <Route path="/signin" caseSensitive={false} element={ <Signin />} />
-              </Routes>
+        <div>
+       
+           <Routes>
+            <Route path="/signin" caseSensitive={false} element={ <Signin />} />
+            </Routes>
+            <Routes>
+            <Route path="/signout" caseSensitive={false} element={ <Signin />} />
+            </Routes>
 
-              <Routes>
-             <Route path="/devices" caseSensitive={false} element={ <DeviceDashBoard />} />
-             </Routes>
+            <Routes>
+           <Route path="/devices" caseSensitive={false} element={ <DeviceDashBoard />} />
+           </Routes>
 
-             <Routes>
-             <Route path="/dashboard" caseSensitive={false} element={ <DashBoard />} />
-             </Routes>
-            
-             <Routes>
-             <Route path="/datadetails" caseSensitive={false} element={ <DataDetails />} />
-             </Routes>
-            
-            
+           <Routes>
+           <Route path="/groupdevices" caseSensitive={false} element={ <GroupDevices />} />
+           </Routes>
+          
+           <Routes>
+           <Route path="/datadetails" caseSensitive={false} element={ <DataDetails />} />
+           </Routes>
+          
+          
 
-             <Routes>
-             <Route path="/details" caseSensitive={false} element={ <Details />}  />
-             </Routes>
+           <Routes>
+           <Route path="/details" caseSensitive={false} element={ <Details />}  />
+           </Routes>
 
-             <Routes>
-             <Route path="/statistic" caseSensitive={false} element={ <StatisticData />}  />
-             </Routes>
-             <Routes>
-             <Route path="/chart" caseSensitive={false} element={ <Chart />}  />
-             </Routes>
+           <Routes>
+           <Route path="/devicesform" caseSensitive={false} element={ <DevicesForm />}  />
+           </Routes>
+           <Routes>
+           <Route path="/chart" caseSensitive={false} element={ <Chart />}  />
+           </Routes>
+           <Routes>
+           <Route path="/signup" caseSensitive={false} element={ <SignUp />}  />
+           </Routes>
 </div>
-   </Router>
+
+ </Router>
+   }
+  </div>        
 )
 }
 
