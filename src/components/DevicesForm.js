@@ -23,6 +23,7 @@ export default function DevicesForm() {
     const basedURL1 = "http://127.0.0.1:3000"
     const basedURL = "http://thegreenlab.xyz:3000"
     const [loading, setLoading] = useState(true)
+    const [keyword, setKeyword] = useState('')
 
     const save = () => {
         if (id === '') {
@@ -108,6 +109,13 @@ export default function DevicesForm() {
         setDateSync('')
        
     }
+    // function search(){
+    //     fetch(basedURL + "/Devices" + "/search?keyword="+keyword, {
+    //         headers: { 'Authorization': 'Basic aGllbkBnbWFpbC5jb206MTIz' }
+    //     })
+    //     // .then(data => load())
+    //     setData(data.Items)
+    // }
 
 
     return (
@@ -159,7 +167,10 @@ export default function DevicesForm() {
                     <button class="btn btn-primary" style={{fontWeight:'bold'}} onClick={() => addnew()}>Add new</button> 
                 </div>
          
-
+                {/* <div>
+                    <input type="search" value={keyword} onChange={(e)=>setKeyword(e.target.value)}/>
+                    <button  onClick={() => search()}>Search</button> 
+                </div> */}
 
             <div className="infoTable">
                 <table className="table table-bordered">
@@ -194,7 +205,7 @@ export default function DevicesForm() {
                                         <td>{e.LabSerialNumber}</td>
                                         <td>{e.IsActive}</td>
                                         <td>
-                                            <button className="btn btn-success" onClick={() => editDevice(e.Id,moment(e.DateSync).format("DD/MM/YY,HH:mm"), e.Description, e.FriendlyName, e.Model, e.SerialNumber, e.Type,  e.LabSerialNumber,e.IsActive,)}><FontAwesomeIcon icon={faEdit} /></button> &nbsp;
+                                            <button className="btn btn-success" onClick={() => editDevice(e.Id,e.DateSync, e.Description, e.FriendlyName, e.Model, e.SerialNumber, e.Type,  e.LabSerialNumber,e.IsActive,)}><FontAwesomeIcon icon={faEdit} /></button> &nbsp;
                                             <button className="btn btn-success" onClick={() => deleteDevice(e.Id)}> <FontAwesomeIcon icon={faTrashAlt} /> </button>
                                         </td>
                                     </tr>

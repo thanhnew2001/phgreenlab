@@ -101,8 +101,8 @@ export default function Devicedb() {
                                         )}
                                     </td>
                                     <td >  
-                                        <a style={{ color: '#087f23', fontWeight: 'normal' }} href={url1}> realData</a> <br /><br />
-                                        <a style={{ color: '#087f23', fontWeight: 'normal' }} href={url}> avgData </a> 
+                                        <a style={{ color: '#087f23', fontWeight: 'normal' }} href={url1}> Real Data</a> <br /><br />
+                                        <a style={{ color: '#087f23', fontWeight: 'normal' }} href={url}> Average Data </a> 
                                     </td>
                                 </tr>
 

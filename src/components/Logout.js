@@ -3,13 +3,13 @@ import React, { useEffect } from 'react'
 
 export default function Logout (){
     const signout = ()=>{
-        sessionStorage.removeItem('token')
-        window.location.reload()
-     console.log("out")
+        localStorage.removeItem('Email')
+        localStorage.removeItem('Password')
+        window.location ='/'
     }
     return (
       <div>
-      <a href='#' onClick={()=>signout()} /> 
+      <a href='#' onClick={()=>signout()}> Are you sure to log out?</a>
       </div>
     )
   

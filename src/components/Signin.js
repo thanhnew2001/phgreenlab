@@ -14,15 +14,20 @@ export default function Signin(){
         const response = await fetch(basedURL+"/Users/Auth/Login",{
             method: 'POST',
             headers:{'Content-Type':'application/json',
-            'Authorization':'Basic dnZAZ21haWwuY29tOjEyMzQ1Ng==' },
+            },
             body: JSON.stringify({Email:email, Password:password})
         })
         const data = await response.json()
     //     try{
     //    if (isLogin===true){
     //        alert("Loging is successful")
-        setData(data)
-      setIsLogin(isLogin)
+
+    console.log(data)
+       
+ 
+      localStorage.setItem('Email', email)
+      localStorage.setItem('Password', password)
+      window.location = '/devices';
     //    }
     //    else{
     //        console.log("failed");
@@ -42,7 +47,6 @@ export default function Signin(){
 return(
     <div>
     <marquee direction="up" className="slogan" >“A PIONEER OF HIGH QUALITY!”</marquee>
-    {isLogin?
     <div className="signin" >
    
         <h1 style={{textAlign: 'center', fontFamily:'inherit', color:'#757575', fontWeight:'bold', fontSize:'40px'}}>Sign In</h1> <br/>
@@ -59,7 +63,6 @@ return(
     </div>
      
     </div>
- : ""}
     </div>
 )
 }

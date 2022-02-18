@@ -24,55 +24,62 @@ function App() {
   const [showLogin, setShowLogin] = useState(false)
   useEffect(() => {
     document.title = "Online Monitoring System "
-    if (sessionStorage.getItem('token') === null || sessionStorage.getItem('token') === ""){
+    if (localStorage.getItem('Email') === null || localStorage.getItem('Email') === ""){
        setShowLogin(true)
+    }
+    else{
+      setShowLogin(false)
     }
   }, []);
  return (
    <div>
        
+
           <Menu />
-          {/* {showLogin?
+          {showLogin?
             <Signin />
-        : */}
+        :
         <Router >
-          <div>
-         
-             {/* <Routes>
-              <Route path="/signin" caseSensitive={false} element={ <Signin />} />
-              </Routes> */}
+        <div>
+       
+           <Routes>
+            <Route path="/signin" caseSensitive={false} element={ <Signin />} />
+            </Routes>
+            <Routes>
+            <Route path="/signout" caseSensitive={false} element={ <Signin />} />
+            </Routes>
 
-              <Routes>
-             <Route path="/devices" caseSensitive={false} element={ <DeviceDashBoard />} />
-             </Routes>
+            <Routes>
+           <Route path="/devices" caseSensitive={false} element={ <DeviceDashBoard />} />
+           </Routes>
 
-             <Routes>
-             <Route path="/groupdevices" caseSensitive={false} element={ <GroupDevices />} />
-             </Routes>
-            
-             <Routes>
-             <Route path="/datadetails" caseSensitive={false} element={ <DataDetails />} />
-             </Routes>
-            
-            
+           <Routes>
+           <Route path="/groupdevices" caseSensitive={false} element={ <GroupDevices />} />
+           </Routes>
+          
+           <Routes>
+           <Route path="/datadetails" caseSensitive={false} element={ <DataDetails />} />
+           </Routes>
+          
+          
 
-             <Routes>
-             <Route path="/details" caseSensitive={false} element={ <Details />}  />
-             </Routes>
+           <Routes>
+           <Route path="/details" caseSensitive={false} element={ <Details />}  />
+           </Routes>
 
-             <Routes>
-             <Route path="/devicesform" caseSensitive={false} element={ <DevicesForm />}  />
-             </Routes>
-             <Routes>
-             <Route path="/chart" caseSensitive={false} element={ <Chart />}  />
-             </Routes>
-             <Routes>
-             <Route path="/signup" caseSensitive={false} element={ <SignUp />}  />
-             </Routes>
+           <Routes>
+           <Route path="/devicesform" caseSensitive={false} element={ <DevicesForm />}  />
+           </Routes>
+           <Routes>
+           <Route path="/chart" caseSensitive={false} element={ <Chart />}  />
+           </Routes>
+           <Routes>
+           <Route path="/signup" caseSensitive={false} element={ <SignUp />}  />
+           </Routes>
 </div>
 
-   </Router>
-   {/* } */}
+ </Router>
+   }
   </div>        
 )
 }
