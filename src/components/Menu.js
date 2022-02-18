@@ -49,7 +49,7 @@ export default function Menu() {
                   <li><a class="dropdown-item" href="/signup">Sign Up</a></li>
                   <li>
                   <a class="dropdown-item" href="/signout">
-                        {sessionStorage.getItem('token')!== null && sessionStorage.getItem('token')!==""? 
+                        {localStorage.getItem('Email')!== null && localStorage.getItem('Email')!==""? 
                         <Logout/> : ""} 
                         <FontAwesomeIcon icon={faSignOutAlt} fixedWidth /> Log Out</a>
                        

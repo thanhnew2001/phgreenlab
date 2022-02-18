@@ -18,6 +18,8 @@ import DataDetails from './components/DataDetails';
 import GroupDevices from './components/GroupDevices';
 import DevicesForm from './components/DevicesForm';
 import SignUp from './components/SignUp';
+import Logout from './components/Logout';
+import Users from './components/Users';
 
 
 function App() {
@@ -46,7 +48,7 @@ function App() {
             <Route path="/signin" caseSensitive={false} element={ <Signin />} />
             </Routes>
             <Routes>
-            <Route path="/signout" caseSensitive={false} element={ <Signin />} />
+            <Route path="/signout" caseSensitive={false} element={ <Logout />} />
             </Routes>
 
             <Routes>
@@ -75,6 +77,9 @@ function App() {
            </Routes>
            <Routes>
            <Route path="/signup" caseSensitive={false} element={ <SignUp />}  />
+           </Routes>
+           <Routes>
+           <Route path="/users" caseSensitive={false} element={ <Users />}  />
            </Routes>
 </div>
 
