@@ -229,21 +229,31 @@ margin-bottom: 30px;
 }
 .infoTable{
   display: flex;
- 
+  margin-right: 150px;
+  justify-content: center;
+  margin-left: 100px;
 }
 .btnDeviceForm{
   margin-left: 70px;
   display: flex;
+
   margin-bottom: 20px;
   justify-content: center;
   
 }
 .container-user{
-  margin-left: 100px;
+  margin-left: 170px;
+margin-right: 150px;
+margin-top: 20px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: normal;
 display: flex;
 flex-direction: column;
+}
+.form-select{
+  width: 80%;
+  display: flex;
+ 
 }
  
 
