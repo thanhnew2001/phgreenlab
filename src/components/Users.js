@@ -11,7 +11,7 @@ export default function Users() {
   const [dataDevice, setDataDevice] = useState([])
   const [loading, setLoading] = useState(true)
   const baseURL = 'http://thegreenlab.xyz:3000'
-  const baseURL1 = 'http://127.0.0.1:3000'
+  //const baseURL1 = 'http://127.0.0.1:3000'
 
   useEffect(async () => {
     load()
@@ -62,7 +62,7 @@ export default function Users() {
       fetch(baseURL + "/Users/Auth/Register", {
         method: 'POST',
         headers: {
-          'Contend-Type': 'application/json',
+          'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
         body: JSON.stringify({Email:email, Password:password, userDevices: []})

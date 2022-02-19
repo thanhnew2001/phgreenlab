@@ -20,6 +20,7 @@ import DevicesForm from './components/DevicesForm';
 import SignUp from './components/SignUp';
 import Logout from './components/Logout';
 import Users from './components/Users';
+import DashBoard from './components/Dashboard';
 
 
 function App() {
@@ -53,6 +54,10 @@ function App() {
 
             <Routes>
            <Route path="/devices" caseSensitive={false} element={ <DeviceDashBoard />} />
+           </Routes>
+
+           <Routes>
+           <Route path="/dashboard" caseSensitive={false} element={ <DashBoard />} />
            </Routes>
 
            <Routes>
