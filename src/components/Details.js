@@ -74,7 +74,8 @@ export default function Details() {
             headers: { 'Authorization': 'Basic aGllbkBnbWFpbC5jb206MTIz' }
         })
         const response = await data.json()
-        // console.log(response)
+        // 
+        
         setResponse(response)
 
 

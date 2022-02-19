@@ -238,6 +238,13 @@ margin-bottom: 30px;
   justify-content: center;
   
 }
+.container-user{
+  margin-left: 100px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: normal;
+display: flex;
+flex-direction: column;
+}
  
 
 
