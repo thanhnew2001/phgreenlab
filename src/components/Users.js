@@ -62,17 +62,17 @@ export default function Users() {
       fetch(baseURL + "/Users/Auth/Register", {
         method: 'POST',
         headers: {
-          'Contend-Type': 'application/json',
+          'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
-        body: JSON.stringify({Email:email, Password:password, userDevices: []})
+        body: JSON.stringify({ Email:email, Password:password, userDevices: []})
       }).then(data => load())
     }
     else {
         fetch(baseURL + "/Users", {
           method: 'PUT',
           headers: {
-            'Contend-Type': 'application/json',
+            'Content-Type': 'application/json',
             'Authorization': 'Basic aGllbkBnbWFpbC5jb206MTIz'
           },
           body: JSON.stringify({Id:id,Email:email, Password:password})
@@ -86,9 +86,10 @@ export default function Users() {
     setPassword('')
   }
 
-  const editUser =(id, email)=>{
+  const editUser =(id, email, password)=>{
     setEmail(email)
     setId(id)
+    setPassword(password)
   }
   const deleteUser =(Id)=>{
     fetch(baseURL + "/Users" +"/"+ Id, {
@@ -105,21 +106,21 @@ export default function Users() {
       <div className="container-user"> 
       <h3>Users Management</h3>
       <div class="mb-3 mt-3">
-        <input type="hidden" value={id} onChange={(e) => setId(e.target.value)} />
+        <input  type="hidden" value={id} onChange={(e) => setId(e.target.value)} />
       </div>
       <div class="mb-3 mt-3">
-        <label>Email:</label>
+        <label style={{width:100}}>Email:</label>
         <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
       </div>
       <div class="mb-3 mt-3">
-        <label>Password:</label>
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        <label style={{width:100}}>Password:</label>
+        <input  type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
       </div>
 
       <div class="mb-3 mt-3">
         <span>Select a device</span>
         <select className="form-select" onChange={() => doSelect()} id="selDevice">
-          <option> -- </option>
+          <option className="form-select"> -- </option>
           {dataDevice.map(s => (<option>{s.SerialNumber} </option>))}
         </select>
       </div>
