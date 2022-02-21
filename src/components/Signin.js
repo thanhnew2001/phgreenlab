@@ -29,7 +29,7 @@ export default function Signin() {
 
             localStorage.setItem('Email', email)
             localStorage.setItem('Password', password)
-            window.location = '/devices';
+            window.location = '/dashboard';
         }
 
         catch (e) {

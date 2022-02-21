@@ -2,7 +2,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 // import your icons
 
-import { faCode, faHighlighter, faHome, faKey, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faCode, faHighlighter, faHome, faKey, faUser,  faArrowsLeftRight } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
     faHome,
@@ -10,6 +10,8 @@ library.add(
   faHighlighter,
   faUser,
   faKey,
+  faArrowsLeftRight,
+
 
   // more icons go here
 );

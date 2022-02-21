@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBold, faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
-import { faKeyboard } from "@fortawesome/free-regular-svg-icons";
+import { faBold, faEdit, faTrashAlt, faArrowRight, faArrowLeft, faArrowsLeftRight } from "@fortawesome/free-solid-svg-icons";
+import { faKeyboard, } from "@fortawesome/free-regular-svg-icons";
 
 export default function Users() {
   const [email, setEmail] = useState('')
@@ -9,6 +9,7 @@ export default function Users() {
   const [id, setId] = useState('')
   const [data, setData] = useState([])
   const [dataDevice, setDataDevice] = useState([])
+  const [selectedDevices, setSelectedDevices] = useState([])
   const [loading, setLoading] = useState(true)
   const baseURL = 'http://thegreenlab.xyz:3000'
   //const baseURL1 = 'http://127.0.0.1:3000'
@@ -23,7 +24,7 @@ export default function Users() {
     const response = await fetch(baseURL + "/Users", {
       method: 'GET',
       headers: {
-        'Contend-Type': 'application/json',
+        'Content-Type': 'application/json',
         'Authorization': 'Basic aGllbkBnbWFpbC5jb206MTIz'
       },
     })
@@ -37,7 +38,7 @@ export default function Users() {
     const response = await fetch(baseURL + "/Devices", {
       method: 'GET',
       headers: {
-        'Contend-Type': 'application/json',
+        'Content-Type': 'application/json',
         'Authorization': 'Basic aGllbkBnbWFpbC5jb206MTIz'
       },
     })
@@ -45,16 +46,6 @@ export default function Users() {
     // console.log(dataDevice);
     setDataDevice(dataDevice)
     setLoading(false)
-  }
-  function doSelect() {
-    let v = document.querySelector('#selDevice').value
-    //alert(v)
-    let ds = document.querySelectorAll('.divDevice')
-    for (let i = 0; i < ds.length; i++) {
-      ds[i].style.display = 'none';
-    }
-
-    document.querySelector('#' + v).style.display = 'block';
   }
 
   function save() {
@@ -65,18 +56,18 @@ export default function Users() {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
-        body: JSON.stringify({ Email:email, Password:password, userDevices: []})
+        body: JSON.stringify({ Email: email, Password: password, userDevices: [] })
       }).then(data => load())
     }
     else {
-        fetch(baseURL + "/Users", {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Basic aGllbkBnbWFpbC5jb206MTIz'
-          },
-          body: JSON.stringify({Id:id,Email:email, Password:password})
-        }).then(data => load())
+      fetch(baseURL + "/Users", {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Basic aGllbkBnbWFpbC5jb206MTIz'
+        },
+        body: JSON.stringify({ Id: id, Email: email, Password: password })
+      }).then(data => load())
     }
   }
 
@@ -86,44 +77,107 @@ export default function Users() {
     setPassword('')
   }
 
-  const editUser =(id, email, password)=>{
+  const editUser = (id, email, password) => {
     setEmail(email)
     setId(id)
     setPassword(password)
   }
-  const deleteUser =(Id)=>{
-    fetch(baseURL + "/Users" +"/"+ Id, {
+  const deleteUser = (Id) => {
+    fetch(baseURL + "/Users" + "/" + Id, {
       method: 'DELETE',
       headers: {
-        'Contend-Type': 'application/json',
+        'Content-Type': 'application/json',
         'Authorization': 'Basic aGllbkBnbWFpbC5jb206MTIz'
       },
     }).then(data => load())
   }
 
+  // function doSelect() {
+  //   let v = document.querySelector('#selDevice').value
+  //   alert(v)
+  //   let ds = document.querySelectorAll('.divDevice')
+  //   for (let i = 0; i < ds.length; i++) {
+  //     ds[i].style.display = 'none';
+  //   }
+
+  //   document.querySelector('#' + v).style.display = 'block';
+  // }
+
+  function getSelectValues(select) {
+    var result = [];
+    var options = select && select.options;
+    var opt;
+  
+    for (var i=0, iLen=options.length; i<iLen; i++) {
+      opt = options[i];
+  
+      if (opt.selected) {
+        result.push({Id: opt.value, SerialNumber: opt.text});
+      }
+    }
+    return result;
+  }
+
+  function moveLeft(){
+      var selecteds =getSelectValues (document.querySelector('#selDevice')) 
+      console.log(selecteds)
+      var olds = selectedDevices
+      olds = olds.concat(selecteds)
+      setSelectedDevices(olds);
+
+     // setSelectedDevices([...selectedDevices, selecteds])
+  }
+
+  function moveRight(index){
+    var selecteds =getSelectValues (document.querySelector('#selDevice')) 
+    console.log(selecteds)
+    var rm = selecteds.splice(index,1)
+  
+    setSelectedDevices(rm)
+  }
+   document.removeEventListener('click', moveRight);
+
   return (
     <div>
-      <div className="container-user"> 
-      <h3>Users Management</h3>
-      <div class="mb-3 mt-3">
-        <input  type="hidden" value={id} onChange={(e) => setId(e.target.value)} />
-      </div>
-      <div class="mb-3 mt-3">
-        <label style={{width:100}}>Email:</label>
-        <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
-      </div>
-      <div class="mb-3 mt-3">
-        <label style={{width:100}}>Password:</label>
-        <input  type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-      </div>
-
-      <div class="mb-3 mt-3">
+      <div className="container-user">
+        <h3>Users Management</h3>
+        <div class="mb-3 mt-3">
+          <input type="hidden" value={id} onChange={(e) => setId(e.target.value)} />
+        </div>
+        <div class="mb-3 mt-3">
+          <label style={{ width: 100 }}>Email:</label>
+          <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
+        </div>
+        <div class="mb-3 mt-3">
+          <label style={{ width: 100 }}>Password:</label>
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        </div>
         <span>Select a device</span>
-        <select className="form-select" onChange={() => doSelect()} id="selDevice">
-          <option className="form-select"> -- </option>
-          {dataDevice.map(s => (<option>{s.SerialNumber} </option>))}
-        </select>
-      </div>
+        <div className='row'>
+
+          <div className='col-md-4' style={{height:500}}>
+            <input type='text'/>
+            <select className="form-select" id="selDevice" multiple="muliple">
+              <option > -- </option>
+              {dataDevice.map(s => (<option value={s.Id}>{s.SerialNumber} </option>))}
+            </select>
+
+          </div>
+          <div className='col-md-4'>
+            <button className='btn btn-primary' onClick={()=>moveRight()}> <FontAwesomeIcon icon={faArrowLeft} /></button> <br />
+            <button className='btn btn-primary' onClick={()=>moveLeft()} > <FontAwesomeIcon icon={faArrowRight} /></button>
+          </div>
+          <div className='col-md-4'>
+          <input type='text'/>
+            <select className="form-select" id="selSelectedDevice" multiple="muliple">
+              <option > -- </option>
+              {selectedDevices.map(s => (<option value={s.Id}>{s.SerialNumber} </option>))}
+            </select>
+          </div>
+
+
+
+        </div>
       </div>
       <div className="btnDeviceForm">
         <button class="btn btn-primary" style={{ fontWeight: 'bold' }} onClick={() => save()}>Save</button> &nbsp; &nbsp;
