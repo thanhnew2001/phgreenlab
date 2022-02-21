@@ -10,7 +10,7 @@ import {
   Link
 } from "react-router-dom";
 import Menu from "./components/Menu"
-import DeviceDashBoard from './components/DeviceDashBoard';
+// import DeviceDashBoard from './components/DeviceDashBoard';
 import Details from './components/Details';
 import Signin from './components/Signin';
 import Chart from './components/Chart';
@@ -48,13 +48,13 @@ function App() {
            <Routes>
             <Route path="/signin" caseSensitive={false} element={ <Signin />} />
             </Routes>
-            <Routes>
+            {/* <Routes>
             <Route path="/signout" caseSensitive={false} element={ <Logout />} />
-            </Routes>
+            </Routes> */}
 
-            <Routes>
+            {/* <Routes>
            <Route path="/devices" caseSensitive={false} element={ <DeviceDashBoard />} />
-           </Routes>
+           </Routes> */}
 
            <Routes>
            <Route path="/dashboard" caseSensitive={false} element={ <DashBoard />} />

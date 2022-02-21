@@ -8,6 +8,11 @@ import { faHome, faKey, faUser, faSignOutAlt } from "@fortawesome/free-solid-svg
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
 
 export default function Menu() {
+  const signout = ()=>{
+    localStorage.removeItem('Email')
+    localStorage.removeItem('Password')
+    window.location ='/'
+}
   return (
     <nav class="navbar navbar-expand-sm navbar-light">
       <div class="container">
@@ -21,10 +26,10 @@ export default function Menu() {
         <div class="collapse navbar-collapse" id="collapsibleNavbar" >
           <ul class="navbar-nav">
             <li class="nav-item">
-            <a style={{ color: '#388e3c', fontSize: 25 }} class="nav-link" href="/"> <FontAwesomeIcon icon={faHome} /> </a>
+              <a style={{ color: '#388e3c', fontSize: 25 }} class="nav-link" href="/"> <FontAwesomeIcon icon={faHome} /> </a>
             </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <li class="nav-item">
-              <a style={{ color: '#388e3c', fontSize: 25 }} class="nav-link" href="/devices">OMS</a>
+              <a style={{ color: '#388e3c', fontSize: 25 }} class="nav-link" href="/dashboard">OMS</a>
             </li>
             <li class="nav-item">
               <a style={{ color: '#388e3c', fontSize: 25 }} class="nav-link" href="/devicesform">Device</a>
@@ -50,14 +55,23 @@ export default function Menu() {
                 <ul class="dropdown-menu  " >
                   <li><a class="dropdown-item" href="/signin">Sign In</a></li>
                   <li><a class="dropdown-item" href="/signup">Sign Up</a></li>
-                  <li>
+                  {/* <li>
                   <a class="dropdown-item" href="/signout">
                         {localStorage.getItem('Email')!== null && localStorage.getItem('Email')!==""? 
                         <Logout/> : ""} 
                         <FontAwesomeIcon icon={faSignOutAlt} fixedWidth /> Log Out</a>
                        
-                    </li>
-                   
+                    </li> */}
+                  <li>
+                  {localStorage.getItem('Email') !== null && localStorage.getItem('Email') !== "" ?
+                    <a class="dropdown-item" href="#" onClick={()=>signout()}>
+                     
+                        
+                      <FontAwesomeIcon icon={faSignOutAlt} fixedWidth /> Log Out</a>
+ : ""}
+                  </li>
+
+
                 </ul>
               </li>
             </div>
