@@ -17,7 +17,8 @@ export default function AssignUser() {
   useEffect(async () => {
     load()
     loadDevice()
-    console.log('abc')
+    console.log('abc  xxx')
+
 
   }, [])
 
